@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+body {
+  font-family: 'Roboto', sans-serif; /* Apply the global sans-serif font */
+  font-size: 18px;  /* Base font size */
+}

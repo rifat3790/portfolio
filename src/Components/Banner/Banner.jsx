@@ -188,29 +188,29 @@ const Banner = () => {
 
         {/* Description */}
         <p className="text-gray-300 dark:text-gray-200 text-center max-w-xl text-lg drop-shadow">
-          passionate about creating responsive and interactive web applications
+          Passionate about creating responsive and interactive web applications
         </p>
 
         {/* Action Buttons */}
-        <div className="flex gap-4 mt-2">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-4 w-full sm:w-auto justify-center">
           <a
             href="#contact"
-            className={`flex items-center gap-2 px-8 py-3 rounded-lg font-bold text-white bg-gradient-to-r ${gradientTW} shadow-lg transition-transform duration-200 hover:scale-105 hover:-translate-y-1`}
+            className={`btn btn-primary bg-gradient-to-r ${gradientTW} shadow-lg w-full sm:w-auto px-8 py-3 text-center`}
           >
-            <i className="fas fa-envelope"></i> Get In Touch
+            Get In Touch
           </a>
           <a
             href="/resume.pdf"
             download
-            className={`flex items-center gap-2 px-8 py-3 rounded-lg font-bold border-2 border-blue-400 text-blue-400 bg-transparent shadow-lg transition-all duration-200 hover:bg-blue-400 hover:text-white hover:scale-105 hover:-translate-y-1`}
+            className={`btn btn-outline btn-info w-full sm:w-auto px-8 py-3 text-center`}
           >
-            <i className="fas fa-download"></i> Download Resume
+            Download Resume
           </a>
-          <button className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-gray-200 bg-gray-800/60 shadow-lg hover:scale-105 hover:-translate-y-1 transition-all">
-            <i className="fas fa-eye"></i> Preview
+          <button className="btn btn-secondary w-full sm:w-auto px-8 py-3 text-center">
+            Preview
           </button>
-          <button className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-gray-200 bg-gray-800/60 shadow-lg hover:scale-105 hover:-translate-y-1 transition-all">
-            <i className="fas fa-share-alt"></i> Share
+          <button className="btn btn-secondary w-full sm:w-auto px-8 py-3 text-center">
+            Share
           </button>
         </div>
 
@@ -219,9 +219,9 @@ const Banner = () => {
           {STATS.map((stat, i) => (
             <div
               key={stat.label}
-              className={`rounded-xl p-8 bg-white/10 dark:bg-black/30 backdrop-blur-md border-2 border-blue-400 shadow-xl flex flex-col items-center transition-transform duration-200 hover:-translate-y-2 hover:shadow-2xl`}
+              className="rounded-xl p-8 bg-white/10 dark:bg-black/30 backdrop-blur-md border-2 border-blue-400 shadow-xl flex flex-col items-center"
             >
-              <span className={`text-3xl md:text-4xl font-extrabold bg-gradient-to-r ${gradientTW} bg-clip-text text-transparent drop-shadow animate-gradient`}>
+              <span className={`text-3xl md:text-4xl font-extrabold bg-gradient-to-r ${gradientTW} bg-clip-text text-transparent drop-shadow`}>
                 {stat.value}
               </span>
               <span className="text-base font-semibold text-gray-200 mt-2">{stat.label}</span>
@@ -235,9 +235,7 @@ const Banner = () => {
             <a
               key={social.label}
               href={social.href}
-              aria-label={social.label}
-              className={`flex items-center gap-2 px-6 py-2 rounded-lg font-bold text-white ${social.color} shadow-lg transition-transform duration-200 hover:scale-110 hover:-translate-y-1`}
-              tabIndex={0}
+              className={`btn ${social.color}`}
             >
               <i className={social.icon}></i> {social.label}
             </a>
