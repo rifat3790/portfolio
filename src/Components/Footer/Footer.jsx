@@ -120,17 +120,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Copyright Bar */}
-        <div className="bg-slate-900 py-4 text-center text-xs text-white/60">
-          <p>© 2024 MD. Refayet Hossen. All rights reserved.</p>
-          <p className="mt-2">Built with ❤️ using Next.js and Tailwind CSS</p>
-          <div className="mt-4">
-            <a href="https://nextjs.org/" className="hover:text-primary">Made with Next.js</a> | 
-            <a href="https://vercel.com/" className="hover:text-primary"> Hosted on Vercel</a> | 
-            <a href="https://github.com/mdrifayethossen/portfolio" className="hover:text-primary"> Source Code</a>
-          </div>
-        </div>
       </div>
     </footer>
   );

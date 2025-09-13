@@ -26,9 +26,9 @@ const STATS = [
 ];
 
 const SOCIALS = [
-  { icon: "fab fa-whatsapp", label: "Chat on WhatsApp", href: "#", color: "bg-green-600" },
-  { icon: "fas fa-envelope", label: "Send Email", href: "#", color: "bg-blue-700" },
-  { icon: "fab fa-linkedin-in", label: "Connect on LinkedIn", href: "#", color: "bg-blue-800" },
+  { icon: "fab fa-whatsapp", label: "Chat on WhatsApp", href: "#", color: "bg-green-600 text-white" },
+  { icon: "fas fa-envelope", label: "Send Email", href: "#", color: "bg-blue-700 text-white" },
+  { icon: "fab fa-linkedin-in", label: "Connect on LinkedIn", href: "#", color: "bg-blue-800 text-white" },
 ];
 
 // Matrix code rain animation (canvas)
