@@ -98,21 +98,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Achievement Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          <div className="bg-gradient-to-r from-blue-500 to-blue-400 p-8 rounded-2xl shadow-2xl text-center animate-fadeInUp">
-            <p className="text-4xl font-extrabold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent drop-shadow-lg mb-2">15+</p>
-            <p className="text-base text-blue-100 font-semibold">Projects Completed</p>
-          </div>
-          <div className="bg-gradient-to-r from-purple-500 to-purple-400 p-8 rounded-2xl shadow-2xl text-center animate-fadeInUp">
-            <p className="text-4xl font-extrabold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent drop-shadow-lg mb-2">5+</p>
-            <p className="text-base text-purple-100 font-semibold">Technologies Mastered</p>
-          </div>
-          <div className="bg-gradient-to-r from-cyan-500 to-blue-400 p-8 rounded-2xl shadow-2xl text-center animate-fadeInUp">
-            <p className="text-4xl font-extrabold bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent drop-shadow-lg mb-2">100%</p>
-            <p className="text-base text-cyan-100 font-semibold">Client Satisfaction</p>
-          </div>
-        </div>
+        
       </div>
 
       {/* Animations */}

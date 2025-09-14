@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import profile from "../../../public/rifat.png";
-import { FaFacebookF, FaLinkedinIn, FaTwitter, FaGithub } from "react-icons/fa"; // Import react-icons for social icons
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaGithub } from "react-icons/fa";
+import './Banner.css';  // Import the CSS file for styling
 
 // Color schemes (HSL, 60% lightness)
 const COLOR_SCHEMES = [
@@ -176,6 +177,7 @@ const Banner = () => {
               height: "154px",
             }}
           />
+         
           <img
             src={profile}
             alt="Profile"

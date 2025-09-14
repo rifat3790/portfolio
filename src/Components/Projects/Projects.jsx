@@ -13,6 +13,8 @@ const projectData = [
     date: "15/12/2024",
     team: "1 person",
     image: "",
+    liveLink: "", // Live link not available yet
+    githubLink: "", // GitHub link not available yet
   },
   {
     id: 2,
@@ -24,6 +26,8 @@ const projectData = [
     date: "12/02/2023",
     team: "2 people",
     image: "",
+    liveLink: "https://example.com", // Live link available
+    githubLink: "https://github.com/example", // GitHub link available
   },
   {
     id: 3,
@@ -35,6 +39,8 @@ const projectData = [
     date: "19/09/2023",
     team: "Solo",
     image: "",
+    liveLink: "", // Live link not available
+    githubLink: "", // GitHub link not available
   },
   {
     id: 4,
@@ -46,6 +52,8 @@ const projectData = [
     date: "28/12/2024",
     team: "Solo",
     image: "",
+    liveLink: "https://portfolio-tyko.vercel.app/", // Live link available
+    githubLink: "https://github.com/rifat3790/portfolio", // GitHub link not available
   },
   {
     id: 5,
@@ -57,6 +65,8 @@ const projectData = [
     date: "15/12/2025",
     team: "1 person",
     image: "",
+    liveLink: "", // Live link not available
+    githubLink: "https://github.com/example", // GitHub link available
   },
   {
     id: 6,
@@ -68,13 +78,9 @@ const projectData = [
     date: "19/05/2023",
     team: "Solo",
     image: "",
+    liveLink: "https://chatapp.example.com", // Live link available
+    githubLink: "", // GitHub link not available
   },
-];
-
-// Filter Categories and Technologies
-const categories = ["All", "Web App", "Healthcare", "Portfolio", "E-commerce", "Dashboard"];
-const technologies = [
-  "React", "Next.js", "Node.js", "MySQL", "Tailwind CSS", "TypeScript", "Firebase", "PHP", "Express", "MongoDB", "Chart.js", "OpenWeather API", "Prisma", "PostgreSQL", "TinyMCE", "Framer Motion"
 ];
 
 const Projects = () => {
@@ -97,10 +103,31 @@ const Projects = () => {
   });
 
   // Modal handler
-  const handleProjectClick = (project) => {
-    setModalProject(project);
+const handleProjectClick = (project) => {
+  setModalProject(project);
+  setModalOpen(true);
+};
+
+const handleButtonClick = (type, project) => {
+  // Show modal ONLY if BOTH links are empty
+  if (!project.liveLink && !project.githubLink) {
+    setModalProject({ ...project, comingSoon: true });
     setModalOpen(true);
-  };
+    return;
+  }
+  
+  // If the requested link exists, open it without showing the modal
+  if (type === "live" && project.liveLink) {
+    window.open(project.liveLink, "_blank");
+    return; // exit after opening the link
+  }
+  
+  if (type === "code" && project.githubLink) {
+    window.open(project.githubLink, "_blank");
+    return; // exit after opening the link
+  }
+};
+
 
   return (
     <section id='projects' className="py-20 bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white min-h-screen">
@@ -131,14 +158,13 @@ const Projects = () => {
 
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-4">
-          {categories.map((category) => (
+          {["All", "Web App", "Healthcare", "Portfolio", "E-commerce", "Dashboard"].map((category) => (
             <button
               key={category}
               className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all
                 ${activeCategory === category
                   ? "bg-blue-600 text-white shadow"
-                  : "bg-white/10 text-blue-300 hover:bg-blue-600 hover:text-white"}
-              `}
+                  : "bg-white/10 text-blue-300 hover:bg-blue-600 hover:text-white"}`}
               onClick={() => setActiveCategory(category)}
             >
               {category}
@@ -148,14 +174,13 @@ const Projects = () => {
 
         {/* Technology Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {technologies.map((tech) => (
+          {["React", "Next.js", "Node.js", "MySQL", "Tailwind CSS", "TypeScript", "Firebase", "PHP", "Express", "MongoDB", "Chart.js", "OpenWeather API", "Prisma", "PostgreSQL", "TinyMCE", "Framer Motion"].map((tech) => (
             <button
               key={tech}
               className={`px-3 py-1 rounded-full font-medium text-xs transition-all
                 ${activeTechnologies.includes(tech)
                   ? "bg-blue-600 text-white shadow"
-                  : "bg-white/10 text-blue-300 hover:bg-blue-600 hover:text-white"}
-              `}
+                  : "bg-white/10 text-blue-300 hover:bg-blue-600 hover:text-white"}`}
               onClick={() =>
                 setActiveTechnologies((prev) =>
                   prev.includes(tech)
@@ -183,7 +208,6 @@ const Projects = () => {
               onClick={() => handleProjectClick(project)}
             >
               <div className="h-40 bg-gradient-to-br from-blue-900 to-purple-900 rounded-t-xl flex items-center justify-center relative">
-                {/* Placeholder for image */}
                 <span className="text-4xl text-blue-300 font-bold">B</span>
                 {project.featured && (
                   <span className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
@@ -206,9 +230,18 @@ const Projects = () => {
                   <span>{project.team}</span>
                 </div>
                 <div className="flex gap-2 mt-2">
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all">Live Demo</button>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all">Code</button>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all">Github</button>
+                  <button
+                    onClick={() => handleButtonClick("live", project)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all"
+                  >
+                    Live Demo
+                  </button>
+                  <button
+                    onClick={() => handleButtonClick("code", project)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all"
+                  >
+                    Code
+                  </button>
                 </div>
               </div>
             </div>
@@ -219,8 +252,17 @@ const Projects = () => {
         {modalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
             <div className="bg-white/90 rounded-xl shadow-2xl p-8 max-w-sm w-full text-center animate-fadeInUp">
-              <h3 className="text-2xl font-bold text-blue-600 mb-4">{modalProject?.title}</h3>
-              <p className="text-lg text-gray-800 mb-6">Project coming soon...</p>
+              {modalProject?.comingSoon ? (
+                <>
+                  <h3 className="text-2xl font-bold text-blue-600 mb-4">{modalProject?.title}</h3>
+                  <p className="text-lg text-gray-800 mb-6">Project coming soon. I am working on it!</p>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-2xl font-bold text-blue-600 mb-4">{modalProject?.title}</h3>
+                  <p className="text-lg text-gray-800 mb-6">{modalProject?.description}</p>
+                </>
+              )}
               <button
                 className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-all"
                 onClick={() => setModalOpen(false)}
@@ -230,32 +272,6 @@ const Projects = () => {
             </div>
           </div>
         )}
-
-        {/* Animations */}
-        <style>{`
-          @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95);}
-            to { opacity: 1; transform: scale(1);}
-          }
-          .animate-fadeIn {
-            animation: fadeIn 0.7s cubic-bezier(.6,.2,.2,1);
-          }
-          @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px);}
-            to { opacity: 1; transform: translateY(0);}
-          }
-          .animate-fadeInUp {
-            animation: fadeInUp 0.7s cubic-bezier(.6,.2,.2,1);
-          }
-          @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-          }
-          .animate-gradient {
-            background-size: 200% 200%;
-            animation: gradient 3s linear infinite;
-          }
-        `}</style>
       </div>
     </section>
   );
