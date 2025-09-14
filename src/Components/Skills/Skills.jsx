@@ -3,16 +3,19 @@ import { FaGlobe, FaCode, FaServer, FaDatabase, FaWrench } from "react-icons/fa"
 
 // Sample Skill Data
 const skillData = [
-  { id: 1, category: "Frontend", name: "React", proficiency: 90, icon: <FaCode /> },
-  { id: 2, category: "Frontend", name: "Next.js", proficiency: 85, icon: <FaCode /> },
-  { id: 3, category: "Frontend", name: "TypeScript", proficiency: 80, icon: <FaCode /> },
-  { id: 4, category: "Frontend", name: "Tailwind CSS", proficiency: 95, icon: <FaCode /> },
-  { id: 5, category: "Backend", name: "Node.js", proficiency: 85, icon: <FaServer /> },
-  { id: 6, category: "Backend", name: "Express.js", proficiency: 80, icon: <FaServer /> },
-  { id: 7, category: "Database", name: "MySQL", proficiency: 80, icon: <FaDatabase /> },
-  { id: 8, category: "Database", name: "MongoDB", proficiency: 70, icon: <FaDatabase /> },
-  { id: 9, category: "Tools", name: "Git", proficiency: 85, icon: <FaWrench /> },
-  { id: 10, category: "Tools", name: "Postman", proficiency: 80, icon: <FaWrench /> },
+  { id: 1, category: "Frontend", name: "React", proficiency: 90, icon: <FaCode />, projectsUsed: 8 },
+  { id: 2, category: "Frontend", name: "Next.js", proficiency: 85, icon: <FaCode />, projectsUsed: 6 },
+  { id: 3, category: "Frontend", name: "TypeScript", proficiency: 80, icon: <FaCode />, projectsUsed: 4 },
+  { id: 4, category: "Frontend", name: "Tailwind CSS", proficiency: 95, icon: <FaCode />, projectsUsed: 7 },
+  { id: 5, category: "Backend", name: "Node.js", proficiency: 85, icon: <FaServer />, projectsUsed: 5 },
+  { id: 6, category: "Backend", name: "Express.js", proficiency: 80, icon: <FaServer />, projectsUsed: 5 },
+  { id: 7, category: "Database", name: "MySQL", proficiency: 80, icon: <FaDatabase />, projectsUsed: 3 },
+  { id: 8, category: "Database", name: "MongoDB", proficiency: 70, icon: <FaDatabase />, projectsUsed: 2 },
+  { id: 9, category: "Tools", name: "Git", proficiency: 85, icon: <FaWrench />, projectsUsed: 10 },
+  { id: 10, category: "Tools", name: "Postman", proficiency: 80, icon: <FaWrench />, projectsUsed: 4 },
+  { id: 11, category: "Tools", name: "Shopify", proficiency: 90, icon: <FaWrench />, projectsUsed: 10 },
+  { id: 12, category: "Tools", name: "WordPress", proficiency: 90, icon: <FaWrench />, projectsUsed: 6 },
+  { id: 13, category: "Tools", name: "Wix", proficiency: 90, icon: <FaWrench />, projectsUsed: 2 },
 ];
 
 const technologies = [
@@ -109,7 +112,9 @@ const Skills = () => {
                 </div>
                 <span className="text-xs text-blue-200 font-bold mt-1">{skill.proficiency}%</span>
               </div>
-              <p className="mt-2 text-xs text-blue-400">Used in 5+ projects</p>
+              <p className="mt-2 text-xs text-blue-400">
+                Used in {skill.projectsUsed}+ projects
+              </p>
             </div>
           ))}
         </div>

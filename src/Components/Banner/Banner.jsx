@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
-import profile from "../../../public/rifat.png"; // Ensure this path is correct!
+import profile from "../../../public/rifat.png";
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaGithub } from "react-icons/fa"; // Import react-icons for social icons
 
 // Color schemes (HSL, 60% lightness)
 const COLOR_SCHEMES = [
@@ -23,12 +24,6 @@ const STATS = [
   { label: "Years Experience", value: "2+" },
   { label: "Projects Done", value: "6+" },
   { label: "Technologies", value: "31+" },
-];
-
-const SOCIALS = [
-  { icon: "fab fa-whatsapp", label: "Chat on WhatsApp", href: "#", color: "bg-green-600 text-white" },
-  { icon: "fas fa-envelope", label: "Send Email", href: "#", color: "bg-blue-700 text-white" },
-  { icon: "fab fa-linkedin-in", label: "Connect on LinkedIn", href: "#", color: "bg-blue-800 text-white" },
 ];
 
 // Matrix code rain animation (canvas)
@@ -92,19 +87,14 @@ function MatrixRain({ primaryColor }) {
   );
 }
 
-// Theme switcher with close icon
-function ThemeSwitcher({ colorIdx, setColorIdx, showTheme, setShowTheme }) {
+// Theme switcher with no close button
+function ThemeSwitcher({ colorIdx, setColorIdx, showTheme }) {
   return (
-    <div className={`fixed top-6 left-6 z-10 flex flex-col gap-2 bg-white/70 dark:bg-black/40 rounded-xl p-3 shadow-lg backdrop-blur-md ${showTheme ? "" : "hidden"}`}>
-      <button
-        onClick={() => setShowTheme(false)}
-        className="absolute top-1 right-1 text-2xl text-gray-700 dark:text-gray-200"
-        aria-label="Close Theme Switcher"
-      >
-        &times;
-      </button>
-      <div className="font-semibold text-xs text-gray-700 dark:text-gray-200">Theme</div>
-      <div className="flex gap-2">
+    <div
+      className={`fixed top-1/2 left-6 z-10 flex flex-col gap-2 bg-white/70 dark:bg-black/40 rounded-xl p-3 shadow-lg backdrop-blur-md ${showTheme ? "" : "hidden"}`}
+      style={{ transform: "translateY(-50%)" }} // This will center it vertically
+    >
+      <div className="flex flex-col gap-2">
         {COLOR_SCHEMES.map((scheme, idx) => (
           <button
             key={scheme.name}
@@ -127,6 +117,10 @@ const Banner = () => {
   const [showTheme, setShowTheme] = useState(true); // To control theme switcher visibility
   const [borderAngle, setBorderAngle] = useState(0);
 
+  // Handle scroll event
+  const bannerRef = useRef();
+  const [socialPosition, setSocialPosition] = useState("right");
+
   useEffect(() => {
     let raf;
     function animate() {
@@ -137,13 +131,34 @@ const Banner = () => {
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!bannerRef.current) return;
+      const bannerRect = bannerRef.current.getBoundingClientRect();
+      // If the bottom of the banner is above the viewport, hide theme and move social icons
+      if (bannerRect.bottom <= 0) {
+        setShowTheme(false); // Hide theme switcher
+        setSocialPosition("left"); // Move social media icons to the left
+      } else {
+        setShowTheme(true); // Show theme switcher
+        setSocialPosition("right"); // Move social media icons back to the right
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Initial check in case page is loaded scrolled
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a192f] to-[#1e293b] dark:from-[#0a192f] dark:to-[#1e293b] overflow-hidden">
+    <section ref={bannerRef} className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a192f] to-[#1e293b] dark:from-[#0a192f] dark:to-[#1e293b] overflow-hidden">
       {/* Matrix Rain Background */}
       <MatrixRain primaryColor={primaryColor} />
 
       {/* Theme Switcher */}
-      <ThemeSwitcher colorIdx={colorIdx} setColorIdx={setColorIdx} showTheme={showTheme} setShowTheme={setShowTheme} />
+      <ThemeSwitcher colorIdx={colorIdx} setColorIdx={setColorIdx} showTheme={showTheme} />
 
       {/* Hero Content */}
       <div className="relative z-10 max-w-6xl w-full mx-auto px-6 py-16 flex flex-col items-center gap-8">
@@ -229,17 +244,22 @@ const Banner = () => {
           ))}
         </div>
 
-        {/* Social Links */}
-        <div className="flex flex-wrap gap-4 mt-8 justify-center">
-          {SOCIALS.map((social, i) => (
-            <a
-              key={social.label}
-              href={social.href}
-              className={`btn ${social.color}`}
-            >
-              <i className={social.icon}></i> {social.label}
-            </a>
-          ))}
+        {/* Social Links on the right */}
+        <div
+          className={`fixed top-1/2 ${socialPosition === "right" ? "right-6" : "left-6"} z-20 flex flex-col gap-6 items-center -translate-y-1/2`}
+        >
+          <a href="https://www.facebook.com/Rifayet221/" target="_blank" rel="noopener noreferrer">
+            <FaFacebookF className="text-3xl text-blue-600 hover:text-blue-800 transition-colors" />
+          </a>
+          <a href="https://www.linkedin.com/in/md-refayet-hossen-62b796236/" target="_blank" rel="noopener noreferrer">
+            <FaLinkedinIn className="text-3xl text-blue-600 hover:text-blue-800 transition-colors" />
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <FaTwitter className="text-3xl text-blue-600 hover:text-blue-800 transition-colors" />
+          </a>
+          <a href="https://github.com/rifat3790" target="_blank" rel="noopener noreferrer">
+            <FaGithub className="text-3xl hover:text-blue-800 transition-colors" />
+          </a>
         </div>
       </div>
     </section>

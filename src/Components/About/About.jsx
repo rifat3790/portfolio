@@ -3,7 +3,7 @@ import { FaMapMarkerAlt, FaBriefcase, FaGraduationCap, FaGlobe, FaCalendarAlt, F
 
 const About = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white py-20 flex items-center justify-center overflow-hidden">
+    <section id='about' className="relative min-h-screen bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white py-20 flex items-center justify-center overflow-hidden">
       {/* Decorative blurred circles */}
       <div className="absolute top-10 left-1/4 w-72 h-72 bg-blue-900 rounded-full opacity-20 blur-2xl animate-pulse -z-10" />
       <div className="absolute bottom-10 right-1/4 w-56 h-56 bg-purple-900 rounded-full opacity-20 blur-2xl animate-pulse -z-10" />

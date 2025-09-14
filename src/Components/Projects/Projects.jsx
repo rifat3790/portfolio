@@ -103,7 +103,7 @@ const Projects = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white min-h-screen">
+    <section id='projects' className="py-20 bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white min-h-screen">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-8">

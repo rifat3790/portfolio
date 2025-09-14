@@ -16,7 +16,7 @@ const Footer = () => {
             <p className="text-xs text-white/70 mb-6">
               Passionate about creating modern web applications that deliver exceptional user experiences. Specializing in React, Next.js, and Node.js development.
             </p>
-            <p className="text-xs text-white/70 mb-2">📍 Narayanganj, Bangladesh</p>
+            <p className="text-xs text-white/70 mb-2">📍 Dhaka, Bangladesh</p>
             <p className="text-xs text-white/70 mb-2">🟢 Available for projects</p>
             <p className="text-xs text-white/70">⚡ Responds within 4 hours</p>
           </div>
@@ -29,7 +29,7 @@ const Footer = () => {
                 <li key={link} className="mb-2">
                   <a href={`#${link.toLowerCase()}`} className="text-sm text-white/80 hover:text-primary transition-all flex items-center gap-2">
                     {link}
-                    <span className="inline-block transform transition-transform hover:translate-x-2">→</span>
+                    
                   </a>
                 </li>
               ))}
@@ -53,16 +53,6 @@ const Footer = () => {
                 <li key={service} className="text-sm text-white/80">{service}</li>
               ))}
             </ul>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {["React", "Next.js", "Node.js", "TypeScript", "MySQL", "MongoDB", "Tailwind CSS", "Git"].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 text-sm text-white/80 border-2 border-white/40 rounded-full hover:bg-blue-600 hover:text-white transition-all"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
           </div>
 
           {/* Column 4: Contact & Social */}
@@ -82,7 +72,7 @@ const Footer = () => {
               {/* Location */}
               <li className="flex items-center gap-2">
                 <FaMapMarkerAlt className="text-blue-400" />
-                <span className="text-white/80">Narayanganj, Bangladesh</span>
+                <span className="text-white/80">Dhaka, Bangladesh</span>
               </li>
               {/* Social Media */}
               <li>
