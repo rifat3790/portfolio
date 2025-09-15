@@ -115,7 +115,7 @@ const Banner = () => {
   const primaryColor = COLOR_SCHEMES[colorIdx].hsl;
   const gradientTW = COLOR_SCHEMES[colorIdx].tw;
 
-  const [showTheme, setShowTheme] = useState(true); // To control theme switcher visibility
+  const [showTheme, setShowTheme] = useState(true); 
   const [borderAngle, setBorderAngle] = useState(0);
 
   // Handle scroll event
@@ -136,18 +136,18 @@ const Banner = () => {
     const handleScroll = () => {
       if (!bannerRef.current) return;
       const bannerRect = bannerRef.current.getBoundingClientRect();
-      // If the bottom of the banner is above the viewport, hide theme and move social icons
+    
       if (bannerRect.bottom <= 0) {
-        setShowTheme(false); // Hide theme switcher
-        setSocialPosition("left"); // Move social media icons to the left
+        setShowTheme(false); 
+        setSocialPosition("left");
       } else {
-        setShowTheme(true); // Show theme switcher
-        setSocialPosition("right"); // Move social media icons back to the right
+        setShowTheme(true); 
+        setSocialPosition("right"); 
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    // Initial check in case page is loaded scrolled
+   
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);

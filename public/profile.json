@@ -1,0 +1,78 @@
+{
+  "name": "MD. REFAYET HOSSEN",
+  "email": "mdrifayethossen@gmail.com",
+  "phone": "01952321390",
+  "location": "Narayanganj, Bangladesh",
+  "links": {
+    "linkedin": "https://linkedin.com/in/md-refayethossen-62b796236",
+    "github": "https://github.com/rifat3790",
+    "project_repo": "https://github.com/rifat3790/Integrated-Healthcare-Support-System-IHSS-.git",
+    "green_health_live": "https://health-fairs-664ee.web.app/"
+  },
+  "profile": "Full-stack developer. React, Next.js, Node.js, MySQL. Tailwind CSS and DaisyUI. Also skilled in Shopify, WordPress, and Wix.",
+  "skills": {
+    "frontend": ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "DaisyUI", "Shopify", "WordPress", "Wix"],
+    "backend": ["Node.js", "MySQL"],
+    "programming": ["C", "Java", "Python", "PHP", "MySQL"],
+    "tools": ["Git", "Postman", "Firebase"],
+    "soft": ["Quick Learner", "Communication", "Collaboration"]
+  },
+  "education": [{
+    "degree": "B.Sc. in Computer Science and Engineering",
+    "institute": "Green University of Bangladesh",
+    "cgpa": "3.75",
+    "years": "2022 – Present",
+    "city": "Kanchon, Narayanganj"
+  }],
+  "experience": [{
+    "role": "Software Developer",
+    "org": "Sardar IT",
+    "years": "2025 – Present",
+    "city": "Dhaka, Bangladesh",
+    "highlights": [
+      "Develop and manage custom websites on Shopify, WordPress, and Wix",
+      "Client communication and project management",
+      "Optimize user experience with responsive design and CMS tools"
+    ]
+  }, {
+    "role": "Moderator",
+    "org": "Farid Publication",
+    "years": "Jan 2025 – Present",
+    "city": "Dhaka, Bangladesh",
+    "highlights": [
+      "Handle customer orders and fulfillment",
+      "Client communication and updates",
+      "Maintain order records and ops support"
+    ]
+  }],
+  "projects": [
+    {
+      "name": "Integrated Healthcare Support System (IHSS)",
+      "stack": ["Next.js", "Express.js", "MySQL"],
+      "features": [
+        "Secure auth",
+        "Doctor-wise appointment booking",
+        "Digital prescription and report upload",
+        "Face verification with discount",
+        "Admin dashboard"
+      ]
+    },
+    {
+      "name": "Green Health Care",
+      "stack": ["React", "Firebase"],
+      "features": [
+        "Firebase auth",
+        "Responsive layout",
+        "Workshops, fitness, screenings, resources"
+      ]
+    }
+  ],
+  "faqs": [
+    {"q": "What is your email?", "a": "mdrifayethossen@gmail.com"},
+    {"q": "What is your phone?", "a": "01952321390"},
+    {"q": "What are your core skills?", "a": "React, Next.js, Node.js, MySQL, Tailwind CSS, DaisyUI, Shopify, WordPress, Wix."},
+    {"q": "Show me your GitHub", "a": "https://github.com/rifat3790"},
+    {"q": "Show me your LinkedIn", "a": "https://linkedin.com/in/md-refayethossen-62b796236"},
+    {"q": "Tell me about IHSS", "a": "IHSS uses Next.js + Express + MySQL. Features include auth, doctor booking, digital prescriptions, face verification discounts, and an admin dashboard."}
+  ]
+}

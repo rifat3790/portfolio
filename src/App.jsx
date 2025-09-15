@@ -1,5 +1,6 @@
 import About from "./Components/About/About"
 import Banner from "./Components/Banner/Banner"
+import Chatbot from "./Components/Chatbot/Chatbot"
 import ExperienceEducation from "./Components/ExperienceEducation/ExperienceEducation"
 import Footer from "./Components/Footer/Footer"
 import GetInTouch from "./Components/GetInTouch/GetInTouch"
@@ -19,6 +20,7 @@ function App() {
       <ExperienceEducation></ExperienceEducation>
       <GetInTouch></GetInTouch>
       <Footer></Footer>
+      <Chatbot></Chatbot>
     </>
   )
 }
