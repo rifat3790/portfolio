@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import profile from "../../../public/rifat.png";
-import { FaFacebookF, FaLinkedinIn, FaTwitter, FaGithub } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaGithub, FaPalette } from "react-icons/fa"; // Added FaPalette
 import './Banner.css';  // Import the CSS file for styling
 
 // Color schemes (HSL, 60% lightness)
@@ -92,7 +92,7 @@ function MatrixRain({ primaryColor }) {
 function ThemeSwitcher({ colorIdx, setColorIdx, showTheme }) {
   return (
     <div
-      className={`fixed top-1/2 left-6 z-10 flex flex-col gap-2 bg-white/70 dark:bg-black/40 rounded-xl p-3 shadow-lg backdrop-blur-md ${showTheme ? "" : "hidden"}`}
+      className={`fixed top-1/2 right-6 z-10 flex flex-col gap-2 bg-white/70 dark:bg-black/40 rounded-xl p-3 shadow-lg backdrop-blur-md ${showTheme ? "" : "hidden"}`}
       style={{ transform: "translateY(-50%)" }} // This will center it vertically
     >
       <div className="flex flex-col gap-2">
@@ -115,7 +115,7 @@ const Banner = () => {
   const primaryColor = COLOR_SCHEMES[colorIdx].hsl;
   const gradientTW = COLOR_SCHEMES[colorIdx].tw;
 
-  const [showTheme, setShowTheme] = useState(true); 
+  const [showTheme, setShowTheme] = useState(false); // Default to hidden
   const [borderAngle, setBorderAngle] = useState(0);
 
   // Handle scroll event
@@ -136,20 +136,14 @@ const Banner = () => {
     const handleScroll = () => {
       if (!bannerRef.current) return;
       const bannerRect = bannerRef.current.getBoundingClientRect();
-    
       if (bannerRect.bottom <= 0) {
-        setShowTheme(false); 
         setSocialPosition("left");
       } else {
-        setShowTheme(true); 
-        setSocialPosition("right"); 
+        setSocialPosition("right");
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-   
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -157,6 +151,16 @@ const Banner = () => {
     <section ref={bannerRef} className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a192f] to-[#1e293b] dark:from-[#0a192f] dark:to-[#1e293b] overflow-hidden">
       {/* Matrix Rain Background */}
       <MatrixRain primaryColor={primaryColor} />
+
+      {/* Theme Icon Button */}
+      <button
+        className="fixed bottom-6 right-6 z-20 bg-white/80 dark:bg-black/60 rounded-full p-3 shadow-lg backdrop-blur-md hover:scale-110 transition-transform"
+        aria-label="Change Theme"
+        onClick={() => setShowTheme((v) => !v)}
+        style={{ transform: "translateY(50%)" }}
+      >
+        <FaPalette className="text-2xl text-blue-600 dark:text-blue-300" />
+      </button>
 
       {/* Theme Switcher */}
       <ThemeSwitcher colorIdx={colorIdx} setColorIdx={setColorIdx} showTheme={showTheme} />
@@ -246,9 +250,9 @@ const Banner = () => {
           ))}
         </div>
 
-        {/* Social Links on the right */}
+        {/* Social Links on the left (middle left side) */}
         <div
-          className={`fixed top-1/2 ${socialPosition === "right" ? "right-6" : "left-6"} z-20 flex flex-col gap-6 items-center -translate-y-1/2`}
+          className={`fixed top-1/2 left-6 z-20 flex flex-col gap-6 items-center -translate-y-1/2`}
         >
           <a href="https://www.facebook.com/Rifayet221/" target="_blank" rel="noopener noreferrer">
             <FaFacebookF className="text-3xl text-blue-600 hover:text-blue-800 transition-colors" />
