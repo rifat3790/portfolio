@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { FaCommentDots } from "react-icons/fa";
+import React, { useEffect, useMemo, useState, useRef } from "react";
+import { FaCommentDots, FaPaperPlane } from "react-icons/fa";
 
 const COMMON_QUESTIONS = [
   "What are your core skills?",
@@ -13,6 +13,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [profile, setProfile] = useState(null);
   const [input, setInput] = useState("");
+  const chatContainerRef = useRef(null);
 
   useEffect(() => {
     fetch("/profile.json")
@@ -24,7 +25,7 @@ const Chatbot = () => {
   const idx = useMemo(() => {
     if (!profile) return null;
 
-    // Build a tiny QA index
+   
     const key = {
       email: profile.email,
       phone: profile.phone,
@@ -51,7 +52,6 @@ const Chatbot = () => {
       .replace(/\s+/g, " ")
       .trim();
 
-  // Basic EN + BN keyword mapping for quick wins
   const detectIntent = (text) => {
     const t = normalize(text);
 
@@ -171,6 +171,11 @@ const Chatbot = () => {
     const intent = detectIntent(msg);
     const reply = answer(intent);
     push(reply, "bot");
+
+    // Scroll to the latest message
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
   };
 
   const handleQuickAsk = (q) => {
@@ -179,6 +184,11 @@ const Chatbot = () => {
     const intent = detectIntent(q);
     const reply = answer(intent);
     push(reply, "bot");
+
+    // Scroll to the latest message
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
   };
 
   return (
@@ -224,7 +234,10 @@ const Chatbot = () => {
           </div>
 
           {/* Messages */}
-          <div className="p-3 h-64 overflow-y-auto space-y-2 bg-[#1e293b]">
+          <div
+            ref={chatContainerRef}
+            className="p-3 h-64 overflow-y-auto space-y-2 bg-[#1e293b]"
+          >
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}>
                 <div
@@ -241,7 +254,7 @@ const Chatbot = () => {
           </div>
 
           {/* Input */}
-          <div className="p-3 bg-[#0a192f] rounded-b-xl border-t border-blue-700">
+          <div className="relative p-3 bg-[#0a192f] rounded-b-xl border-t border-blue-700">
             <input
               type="text"
               placeholder="Ask in Bangla or English…"
@@ -255,6 +268,13 @@ const Chatbot = () => {
               }}
               className="w-full p-2 rounded-lg border border-blue-700 bg-[#1e293b] text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
+            {/* Send Button */}
+            <button
+              onClick={() => handleSendMessage(input)}
+              className="absolute right-3 bottom-3 text-white"
+            >
+              <FaPaperPlane size={24} />
+            </button>
           </div>
         </div>
       )}

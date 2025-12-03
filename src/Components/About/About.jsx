@@ -3,7 +3,7 @@ import { FaMapMarkerAlt, FaBriefcase, FaGraduationCap, FaGlobe, FaCalendarAlt, F
 
 const About = () => {
   return (
-    <section id='about' className="relative min-h-screen bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white py-20 flex items-center justify-center overflow-hidden">
+    <section id='about' className="relative bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white py-20 flex items-center justify-center overflow-hidden">
       {/* Decorative blurred circles */}
       <div className="absolute top-10 left-1/4 w-72 h-72 bg-blue-900 rounded-full opacity-20 blur-2xl animate-pulse -z-10" />
       <div className="absolute bottom-10 right-1/4 w-56 h-56 bg-purple-900 rounded-full opacity-20 blur-2xl animate-pulse -z-10" />
@@ -32,7 +32,7 @@ const About = () => {
             <div className="flex flex-col md:flex-row gap-6 mt-6 items-center justify-center">
               <div className="flex items-center gap-2 text-blue-400">
                 <FaMapMarkerAlt />
-                <span className="font-semibold">Narayanganj, Bangladesh</span>
+                <span className="font-semibold">Dhaka, Bangladesh</span>
               </div>
               <div className="flex items-center gap-2 text-blue-400">
                 <FaCalendarAlt />
@@ -80,7 +80,7 @@ const About = () => {
             {/* Skills Preview */}
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 animate-fadeInRight">
               <h3 className="text-xl font-bold text-blue-300 mb-4 text-center">Core Competencies</h3>
-              <div className="grid grid-cols-2 grid-rows-2 gap-6 mt-4 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 w-full">
                 <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-400 text-white font-semibold shadow hover:scale-105 transition-transform">
                   <FaReact /> Frontend Development
                 </div>

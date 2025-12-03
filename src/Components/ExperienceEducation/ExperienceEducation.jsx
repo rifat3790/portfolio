@@ -1,5 +1,11 @@
 import React from "react";
-import { FaMapMarkerAlt, FaClock, FaUsers } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaClock,
+  FaUsers,
+  FaUserTie,
+  FaAward,
+} from "react-icons/fa";
 
 // Timeline items data
 const timelineData = [
@@ -37,27 +43,70 @@ const timelineData = [
       "Algorithm Visualizer (Data Structures Course)",
     ],
   },
-
   {
     id: 2,
     side: "right",
-    type: "internship",
-    date: "2025 - Present",
+    type: "experience",
+    date: "Oct 15, 2025 - Present",
+    title: "Web Developer & Team Co-Leader",
+    company: "Softvence Agency",
+    location: "Dhaka, Bangladesh",
+    employmentType: "Full-time",
+    duration: "Current",
+    teamSize: "10 people team",
+    description:
+      "Leading a 10-member web development team at Softvence Agency, delivering premium websites and web apps for global clients. Responsible for project architecture, code reviews, and mentoring junior developers. Launched 15+ client projects.",
+    responsibilities: [
+      "Lead and co-manage a team of 10 developers",
+      "Architect scalable web solutions for clients",
+      "Conduct code reviews and enforce best practices",
+      "Mentor junior developers and interns",
+      "Coordinate with designers and project managers",
+      "Deliver projects on tight deadlines with high quality",
+    ],
+    achievements: [
+      "Promoted to Team Co-Leader within 2 months",
+      "Successfully launched 15+ client projects",
+      "Recognized for leadership and technical excellence",
+    ],
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Liquid",
+      "Tailwind CSS",
+      "Figma",
+      "Git",
+      "Shopify",
+      "Wix",
+      "WordPress",
+    ],
+    highlights: [
+      "Team achieved 100% client satisfaction rate",
+      "Introduced automated deployment pipelines",
+      "Organized internal workshops for skill development",
+    ],
+  },
+  {
+    id: 3,
+    side: "right",
+    type: "experience",
+    date: "2025 - Oct 14, 2025",
     title: "Software Developer",
     company: "Sardar IT",
     location: "Mirpur-2, Dhaka, Bangladesh",
-    employmentType: "Internship",
+    employmentType: "Full-time",
     duration: "3 months",
     teamSize: "5 people team",
     description:
-      "Summer internship focused on learning modern web development practices. Worked on real projects under senior developer mentorship, gaining hands-on experience with industry-standard tools and workflows.",
+      "Worked as a software developer at Sardar IT, building custom websites and web applications for clients. Collaborated with a team, managed projects, and optimized user experience using modern web technologies.",
     responsibilities: [
-      "Learned modern web development practices under senior mentorship",
-      "Built 10 complete web applications from scratch",
-      "Participated in agile development processes and daily standups",
-      "Contributed to real client projects as team member",
-      "Learned version control with Git and collaborative development",
-      "Implemented responsive designs for mobile and desktop",
+      "Develop and manage custom websites for clients",
+      "Project management and client communication",
+      "Optimize user experience with responsive design and CMS tools",
+      "Collaborate with team members for efficient delivery",
+      "Implement modern web technologies and frameworks",
+      "Maintain code quality and documentation",
     ],
     achievements: [
       "Completed all assigned projects ahead of schedule",
@@ -68,22 +117,21 @@ const timelineData = [
       "HTML",
       "CSS",
       "JavaScript",
-      "React",
-      "Git",
+      "Liquid",
+      "Tailwind CSS",
       "Figma",
-      "VS Code",
+      "Git",
       "Shopify",
-      "WordPress",
       "Wix",
+      "WordPress",
     ],
     highlights: [
-      "Only intern invited to client presentation meetings",
+      "Only developer invited to client presentation meetings",
       "Personal project featured in company newsletter",
     ],
   },
-
   {
-    id: 3,
+    id: 4,
     side: "left",
     type: "experience",
     date: "2023 - 2024",
@@ -126,163 +174,325 @@ const timelineData = [
   },
 ];
 
+const ICONS = {
+  experience: <FaUserTie className="text-white text-xl" />,
+  internship: <FaUsers className="text-white text-xl" />,
+  education: <FaAward className="text-white text-xl" />,
+};
+
+const AnimatedBg = () => (
+  <div className="absolute inset-0 -z-20 overflow-hidden">
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 1440 800"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full"
+      style={{ position: "absolute", left: 0, top: 0 }}
+    >
+      <defs>
+        <linearGradient
+          id="exp-grad"
+          x1="0"
+          y1="0"
+          x2="1440"
+          y2="800"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#3b82f6" />
+          <stop offset="0.5" stopColor="#a78bfa" />
+          <stop offset="1" stopColor="#06b6d4" />
+        </linearGradient>
+      </defs>
+      <g>
+        <ellipse
+          cx="300"
+          cy="200"
+          rx="320"
+          ry="120"
+          fill="url(#exp-grad)"
+          opacity="0.13"
+        >
+          <animate
+            attributeName="cy"
+            values="200;250;200"
+            dur="7s"
+            repeatCount="indefinite"
+          />
+        </ellipse>
+        <ellipse
+          cx="1200"
+          cy="600"
+          rx="260"
+          ry="100"
+          fill="url(#exp-grad)"
+          opacity="0.1"
+        >
+          <animate
+            attributeName="cy"
+            values="600;550;600"
+            dur="8s"
+            repeatCount="indefinite"
+          />
+        </ellipse>
+        <ellipse
+          cx="800"
+          cy="400"
+          rx="400"
+          ry="180"
+          fill="url(#exp-grad)"
+          opacity="0.08"
+        >
+          <animate
+            attributeName="rx"
+            values="400;350;400"
+            dur="9s"
+            repeatCount="indefinite"
+          />
+        </ellipse>
+      </g>
+    </svg>
+  </div>
+);
+
+const ColumnAnimationBg = () => (
+  <div className="absolute inset-0 -z-20 pointer-events-none">
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 1440 800"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full"
+    >
+      <g>
+        {/* Animated vertical columns */}
+        <rect x="200" width="18" height="800" fill="#3b82f6" opacity="0.1">
+          <animate
+            attributeName="y"
+            values="0;40;0"
+            dur="6s"
+            repeatCount="indefinite"
+          />
+        </rect>
+        <rect x="400" width="18" height="800" fill="#06b6d4" opacity="0.1">
+          <animate
+            attributeName="height"
+            values="800;700;800"
+            dur="7s"
+            repeatCount="indefinite"
+          />
+        </rect>
+        <rect x="600" width="18" height="800" fill="#a78bfa" opacity="0.1">
+          <animate
+            attributeName="y"
+            values="0;60;0"
+            dur="8s"
+            repeatCount="indefinite"
+          />
+        </rect>
+        <rect x="800" width="18" height="800" fill="#3b82f6" opacity="0.1">
+          <animate
+            attributeName="height"
+            values="800;600;800"
+            dur="6.5s"
+            repeatCount="indefinite"
+          />
+        </rect>
+        <rect x="1000" width="18" height="800" fill="#06b6d4" opacity="0.1">
+          <animate
+            attributeName="y"
+            values="0;30;0"
+            dur="7.5s"
+            repeatCount="indefinite"
+          />
+        </rect>
+        <rect x="1200" width="18" height="800" fill="#a78bfa" opacity="0.1">
+          <animate
+            attributeName="height"
+            values="800;650;800"
+            dur="8.5s"
+            repeatCount="indefinite"
+          />
+        </rect>
+      </g>
+    </svg>
+  </div>
+);
+
 const ExperienceEducation = () => {
   return (
-    <section id="education" className="relative py-20 bg-gradient-to-br from-[#0a192f] to-[#1e293b] overflow-hidden">
+    <section
+      id="education"
+      className="relative py-20 bg-gradient-to-br from-[#0a192f] to-[#1e293b] overflow-hidden"
+    >
+      {/* Animated Column SVG Background */}
+      <ColumnAnimationBg />
+
       {/* Decorative blurred circles */}
       <div className="absolute top-10 left-1/4 w-72 h-72 bg-blue-900 rounded-full opacity-20 blur-2xl animate-pulse -z-10" />
       <div className="absolute bottom-10 right-1/4 w-56 h-56 bg-purple-900 rounded-full opacity-20 blur-2xl animate-pulse -z-10" />
 
-      <div className="container mx-auto max-w-7xl px-4">
+      <div className="container mx-auto max-w-[1250px] px-4 md:px-2 lg:px-0 animate-fadeInUp">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 text-transparent bg-clip-text drop-shadow-lg mb-2 animate-gradient">
             Experience & Education
           </h2>
           <p className="text-lg text-blue-200 mb-2">
-            My journey to achieve development, from education to professional experience, advocating continuous learning and growth in this field.
+            My journey to achieve development, from education to professional
+            experience, advocating continuous learning and growth in this field.
           </p>
         </div>
 
         {/* Timeline */}
-        <div className="relative flex flex-col items-center">
-          {/* Central Spine */}
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-1 bg-gradient-to-b from-blue-400 to-purple-400 h-full z-0" />
-
-          {/* Timeline Items */}
-          {timelineData.map((item, idx) => (
-            <div
-              key={item.id}
-              className={`relative w-full flex flex-col md:flex-row items-center mb-16
-                ${item.side === "left" ? "md:justify-start" : "md:justify-end"}`}
-            >
-              {/* Timeline Dot */}
-              <div className="absolute left-1/2 -translate-x-1/2 z-10 md:static md:translate-x-0 md:left-0 flex items-center justify-center">
-                <div
-                  className={`w-6 h-6 rounded-full border-4 border-blue-400
-                    ${item.type === "experience"
-                      ? "bg-blue-500 animate-pulse"
-                      : "bg-green-500"}`}
-                />
-              </div>
-
-              {/* Card */}
+        <div className="flex flex-col items-center">
+          {/* Cards Grid */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-8"
+            style={{ rowGap: "30px" }}
+          >
+            {timelineData.map((item, idx) => (
               <div
-                className={`w-full md:w-[420px] bg-white/5 backdrop-blur-lg p-8 rounded-2xl shadow-2xl relative z-10
-                  ${item.side === "left" ? "md:mr-auto md:ml-0" : "md:ml-auto md:mr-0"}
-                  animate-fadeInUp`}
+                key={item.id}
+                className="relative flex flex-col items-center md:items-stretch"
               >
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-white px-3 py-1 rounded-lg shadow">
-                    {item.date}
-                  </span>
-                  {item.type === "experience" && (
-                    <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded-md shadow">
-                      {item.employmentType}
-                    </span>
-                  )}
-                  {item.type === "education" && (
-                    <span className="text-xs bg-green-600 text-white px-2 py-1 rounded-md shadow">
-                      Education
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-2 text-white">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-blue-300 mb-1">{item.company}</p>
-                <p className="text-xs text-blue-200 flex items-center gap-2 mb-1">
-                  <FaMapMarkerAlt /> {item.location}
-                </p>
-                {item.duration && (
-                  <p className="text-xs text-blue-200 flex items-center gap-2 mb-1">
-                    <FaClock /> {item.duration}
-                  </p>
-                )}
-                {item.teamSize && (
-                  <p className="text-xs text-blue-200 flex items-center gap-2 mb-1">
-                    <FaUsers /> {item.teamSize}
-                  </p>
-                )}
-                {item.cgpa && (
-                  <p className="text-xs text-blue-200 mb-1">
-                    CGPA:{" "}
-                    <span className="font-bold text-green-400">{item.cgpa}</span>
-                  </p>
-                )}
-                {item.expectedGraduation && (
-                  <p className="text-xs text-blue-200 mb-1">
-                    Expected Graduation:{" "}
-                    <span className="font-bold text-blue-400">
-                      {item.expectedGraduation}
-                    </span>
-                  </p>
-                )}
-                <p className="text-sm text-slate-300 mb-2">{item.description}</p>
-
-                {/* Responsibilities */}
-                {item.responsibilities && (
-                  <ul className="list-disc pl-5 text-blue-200 mb-2 text-xs">
-                    {item.responsibilities.map((res, i) => (
-                      <li key={i}>{res}</li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* Achievements */}
-                {item.achievements && (
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {item.achievements.map((ach, i) => (
-                      <span
-                        key={i}
-                        className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-2 py-1 rounded-lg text-xs shadow"
-                      >
-                        {ach}
-                      </span>
-                    ))}
+                {/* Card */}
+                <div className="w-full h-full bg-gradient-to-br from-[#1e293b] to-[#0a192f] backdrop-blur-lg p-7 rounded-2xl shadow-2xl border border-blue-900 relative z-10 transition-all duration-300 hover:scale-[1.03] hover:shadow-3xl flex flex-col min-h-[340px]">
+                  {/* Icon inside card, centered above content */}
+                  <div className="flex justify-center mb-3">
+                    <div
+                      className={`w-12 h-12 rounded-full border-4 border-blue-400 flex items-center justify-center shadow-lg
+                        ${
+                          item.type === "experience"
+                            ? "bg-blue-500 animate-pulse"
+                            : item.type === "internship"
+                            ? "bg-yellow-500 animate-pulse"
+                            : "bg-green-500"
+                        }`}
+                    >
+                      {ICONS[item.type]}
+                    </div>
                   </div>
-                )}
-
-                {/* Technologies */}
-                {item.technologies && (
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {item.technologies.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="bg-blue-400 text-white text-xs px-2 py-1 rounded-lg shadow"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="flex flex-wrap justify-between items-center mb-3 gap-2">
+                    <span className="text-xs font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-white px-3 py-1 rounded-lg shadow">
+                      {item.date}
+                    </span>
+                    <span
+                      className={`text-xs px-2 py-1 rounded-md shadow ${
+                        item.type === "experience"
+                          ? "bg-blue-600 text-white"
+                          : item.type === "internship"
+                          ? "bg-yellow-600 text-white"
+                          : "bg-green-600 text-white"
+                      }`}
+                    >
+                      {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
+                    </span>
                   </div>
-                )}
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-blue-300 mb-1">{item.company}</p>
+                  <p className="text-xs text-blue-200 flex items-center gap-2 mb-1">
+                    <FaMapMarkerAlt /> {item.location}
+                  </p>
+                  {item.duration && (
+                    <p className="text-xs text-blue-200 flex items-center gap-2 mb-1">
+                      <FaClock /> {item.duration}
+                    </p>
+                  )}
+                  {item.teamSize && (
+                    <p className="text-xs text-blue-200 flex items-center gap-2 mb-1">
+                      <FaUsers /> {item.teamSize}
+                    </p>
+                  )}
+                  {item.cgpa && (
+                    <p className="text-xs text-blue-200 mb-1">
+                      CGPA:{" "}
+                      <span className="font-bold text-green-400">
+                        {item.cgpa}
+                      </span>
+                    </p>
+                  )}
+                  {item.expectedGraduation && (
+                    <p className="text-xs text-blue-200 mb-1">
+                      Expected Graduation:{" "}
+                      <span className="font-bold text-blue-400">
+                        {item.expectedGraduation}
+                      </span>
+                    </p>
+                  )}
+                  <p className="text-sm text-slate-300 mb-2">
+                    {item.description}
+                  </p>
 
-                {/* Highlights */}
-                {item.highlights && (
-                  <ul className="mt-4 text-xs text-green-300 list-disc pl-5">
-                    {item.highlights.map((h, i) => (
-                      <li key={i}>{h}</li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* Projects (for education) */}
-                {item.projects && (
-                  <div className="mt-4">
-                    <span className="text-xs font-bold text-blue-300">Projects:</span>
-                    <ul className="list-disc pl-5 text-blue-200 text-xs">
-                      {item.projects.map((p, i) => (
-                        <li key={i}>{p}</li>
+                  {/* Responsibilities */}
+                  {item.responsibilities && (
+                    <ul className="list-disc pl-5 text-blue-200 mb-2 text-xs">
+                      {item.responsibilities.map((res, i) => (
+                        <li key={i}>{res}</li>
                       ))}
                     </ul>
-                  </div>
-                )}
+                  )}
+
+                  {/* Achievements */}
+                  {item.achievements && (
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {item.achievements.map((ach, i) => (
+                        <span
+                          key={i}
+                          className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-2 py-1 rounded-lg text-xs shadow"
+                        >
+                          {ach}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Technologies */}
+                  {item.technologies && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {item.technologies.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="bg-blue-400 text-white text-xs px-2 py-1 rounded-lg shadow"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Highlights */}
+                  {item.highlights && (
+                    <ul className="mt-4 text-xs text-green-300 list-disc pl-5">
+                      {item.highlights.map((h, i) => (
+                        <li key={i}>{h}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* Projects (for education) */}
+                  {item.projects && (
+                    <div className="mt-4">
+                      <span className="text-xs font-bold text-blue-300">
+                        Projects:
+                      </span>
+                      <ul className="list-disc pl-5 text-blue-200 text-xs">
+                        {item.projects.map((p, i) => (
+                          <li key={i}>{p}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-
       {/* Animations */}
       <style>{`
         @keyframes fadeInUp {
@@ -299,6 +509,14 @@ const ExperienceEducation = () => {
         .animate-gradient {
           background-size: 200% 200%;
           animation: gradient 3s linear infinite;
+        }
+        @media (max-width: 1024px) {
+          .grid-cols-2 { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 768px) {
+          .rounded-2xl { border-radius: 1rem !important; }
+          .p-7 { padding: 1rem !important; }
+          .mb-12 { margin-bottom: 2rem !important; }
         }
       `}</style>
     </section>

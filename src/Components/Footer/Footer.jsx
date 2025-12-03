@@ -3,10 +3,10 @@ import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaWhatsapp, FaGlobe, FaPaperPlane,
 
 const Footer = () => {
   return (
-    <footer className="py-20 bg-gradient-to-br from-slate-800 to-slate-900 text-white">
+    <footer className="py-10 md:py-20 bg-gradient-to-br from-slate-800 to-slate-900 text-white">
       <div className="container mx-auto px-6 max-w-screen-xl">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-10">
           {/* Column 1: Brand & Introduction */}
           <div className="max-w-xs">
             <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-4">
@@ -29,7 +29,6 @@ const Footer = () => {
                 <li key={link} className="mb-2">
                   <a href={`#${link.toLowerCase()}`} className="text-sm text-white/80 hover:text-primary transition-all flex items-center gap-2">
                     {link}
-                    
                   </a>
                 </li>
               ))}
@@ -94,8 +93,8 @@ const Footer = () => {
         </div>
 
         {/* Secondary Links Bar */}
-        <div className="border-t-2 border-white/10 py-6 mb-8">
-          <div className="flex justify-between items-center text-xs text-white/60">
+        <div className="border-t-2 border-white/10 py-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-white/60 space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="flex space-x-4">
               <a href="#" className="hover:text-primary">Privacy Policy</a>
               <a href="#" className="hover:text-primary">Terms of Service</a>

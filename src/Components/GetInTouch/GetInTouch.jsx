@@ -97,7 +97,7 @@ const GetInTouch = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <FaMapMarkerAlt className="text-blue-400" />
-                  <span className="text-white font-medium">Narayanganj, Bangladesh</span>
+                  <span className="text-white font-medium">Dhaka, Bangladesh</span>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@ const GetInTouch = () => {
                   <FaPhone /> 01952321390
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg text-blue-300">
-                  <FaMapMarkerAlt /> Narayanganj, Bangladesh
+                  <FaMapMarkerAlt /> Dhaka, Bangladesh
                 </div>
               </div>
               <h3 className="text-lg font-bold text-white mt-6 mb-2">Send me a message</h3>

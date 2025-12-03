@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import profile from "../../../public/rifat.png";
 
 // Use section IDs for hrefs
@@ -12,30 +12,91 @@ const menuItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-// Improved smooth scroll handler
-const handleMenuClick = (e, href, setModalVisible) => {
-  e.preventDefault();
-  const id = href.replace("#", "");
-  // Check if the clicked menu is Blog and show the modal
-  if (id === "blog") {
-    setModalVisible(true);
-  } else {
-    const el = document.getElementById(id) || document.querySelector(`[name='${id}']`);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      // fallback: scroll to top for "home"
-      if (id === "home") window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }
-};
-
 const Navbar = () => {
-  const [modalVisible, setModalVisible] = useState(false); // Modal state
+  const [menuOpen, setMenuOpen] = useState(false); // Mobile menu state
 
-  const closeModal = () => {
-    setModalVisible(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
+
+  // Pure JS confetti animation (canvas)
+  useEffect(() => {
+    // Create canvas
+    const canvas = document.createElement("canvas");
+    canvas.style.position = "fixed";
+    canvas.style.left = "0";
+    canvas.style.top = "0";
+    canvas.style.width = "100vw";
+    canvas.style.height = "100vh";
+    canvas.style.pointerEvents = "none";
+    canvas.style.zIndex = "9999";
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+    const confettiCount = 120;
+    const confetti = [];
+    const colors = [
+      "#00bcd4",
+      "#8bc34a",
+      "#ffeb3b",
+      "#ff9800",
+      "#e91e63",
+      "#9c27b0",
+    ];
+
+    for (let i = 0; i < confettiCount; i++) {
+      confetti.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * -canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * confettiCount,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.random() * 10 - 10,
+        tiltAngle: 0,
+        tiltAngleIncremental: Math.random() * 0.07 + 0.05,
+      });
+    }
+
+    let frame = 0;
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach((c) => {
+        ctx.beginPath();
+        ctx.lineWidth = c.r;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + c.r / 3, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+        ctx.stroke();
+      });
+      updateConfetti();
+      frame++;
+      if (frame < 90)
+        requestAnimationFrame(drawConfetti); // faster: half the frames
+      else document.body.removeChild(canvas);
+    }
+
+    function updateConfetti() {
+      confetti.forEach((c) => {
+        c.y += ((Math.cos(c.d) + 3 + c.r / 2) / 2) * 2; // faster: double the speed
+        c.x += Math.sin(frame / 10) * 3; // faster: increase horizontal movement
+        c.tiltAngle += c.tiltAngleIncremental * 1.5; // faster tilt
+        c.tilt = Math.sin(c.tiltAngle) * 15;
+        if (c.y > canvas.height) {
+          c.x = Math.random() * canvas.width;
+          c.y = -10;
+        }
+      });
+    }
+
+    drawConfetti();
+
+    // Cleanup
+    return () => {
+      if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+    };
+  }, []);
 
   return (
     <div>
@@ -43,15 +104,25 @@ const Navbar = () => {
       <div className="navbar bg-gray-900 shadow-sm border-b-2 border-gray-700 py-4">
         {/* Logo Container */}
         <div className="navbar-start flex items-center gap-2">
-          <img className="w-[50px] h-[50px] rounded-full" src={profile} alt="Profile" />
-          <a className="btn btn-ghost text-xl text-white font-semibold hover:text-gray-300">Rifat</a>
+          <img
+            className="w-[50px] h-[50px] rounded-full"
+            src={profile}
+            alt="Profile"
+          />
+          <a className="btn btn-ghost text-xl text-white font-semibold hover:text-gray-300">
+            Rifat
+          </a>
         </div>
 
         {/* Menu Container */}
         <div className="navbar-end w-full">
           {/* Mobile Menu */}
           <div className="dropdown lg:hidden">
-            <div tabIndex={0} role="button" className="btn btn-ghost text-white">
+            <button
+              onClick={toggleMenu}
+              className="btn btn-ghost text-white"
+              aria-label="Toggle menu"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -66,23 +137,29 @@ const Navbar = () => {
                   d="M4 6h16M4 12h8m-8 6h16"
                 />
               </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-gray-800 text-white rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              {menuItems.map((item, idx) => (
-                <li key={idx}>
-                  <a
-                    href={item.href}
-                    className="text-white hover:text-gray-300"
-                    onClick={(e) => handleMenuClick(e, item.href, setModalVisible)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            </button>
+            {menuOpen && (
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-gray-800 text-white rounded-box z-10 mt-3 w-52 p-2 shadow left-0 absolute"
+                style={{ left: "-150px", top: "50px" }} // Make sure the menu opens from the left side
+                onClick={() => setMenuOpen(false)}
+              >
+                {menuItems.map((item, idx) => (
+                  <li key={idx}>
+                    <a
+                      href={item.href}
+                      className="text-white hover:text-gray-300"
+                      onClick={(e) =>
+                        handleMenuClick(e, item.href, setModalVisible)
+                      }
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* Desktop Menu */}
@@ -93,7 +170,9 @@ const Navbar = () => {
                   <a
                     href={item.href}
                     className="text-white hover:text-gray-300"
-                    onClick={(e) => handleMenuClick(e, item.href, setModalVisible)}
+                    onClick={(e) =>
+                      handleMenuClick(e, item.href, setModalVisible)
+                    }
                   >
                     {item.label}
                   </a>
@@ -103,30 +182,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      {/* Modal for Blog */}
-      {modalVisible && (
-        <div
-          className="fixed inset-0 flex items-center justify-center z-50 bg-black/50"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 className="text-xl font-semibold text-center mb-4 text-black">Blog Coming Soon</h3>
-            <p className="text-center text-gray-600">I am working hard on the blog section. Stay tuned for updates!</p>
-            <div className="flex justify-center mt-6">
-              <button
-                onClick={closeModal}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
