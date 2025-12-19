@@ -254,52 +254,52 @@ const [showToast, setShowToast] = useState(false);
                 </div>
 
                 {/* Password Field */}
-                {project.password && (
-                  <div className="mb-3 p-3 bg-white/10 rounded-lg relative">
+                {/* Password / Access Info */}
+{project.password ? (
+  <div className="mb-3 p-3 bg-white/10 rounded-lg relative">
+    <div className="flex justify-between items-center">
+      <div>
+        <p className="text-xs text-blue-300 font-semibold mb-1">
+          Password
+        </p>
+        <p className="text-sm font-mono text-white">
+          {project.password}
+        </p>
+      </div>
 
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <p className="text-xs text-blue-300 font-semibold mb-1">
-                          Password
-                        </p>
-                        <p className="text-sm font-mono text-white">
-                          {project.password}
-                        </p>
-                      </div>
-                      {/* Copied badge */}
-{/* {copiedId === project.id && (
-  <span className="absolute -top-3 right-3 text-xs bg-green-500 text-white px-2 py-1 rounded-md animate-copied pointer-events-none">
-    Copied!
-  </span>
-)} */}
+      <button
+        onClick={(e) =>
+          handleCopyPassword(project.password, project.id, e)
+        }
+        className={`ml-2 p-2 rounded-lg transition-all transform ${
+          copiedId === project.id
+            ? "bg-green-500 scale-110"
+            : "bg-blue-600 hover:bg-blue-500"
+        }`}
+        title="Copy password"
+      >
+        {copiedId === project.id ? (
+          <FaCheck className="text-white text-sm" />
+        ) : (
+          <svg
+            className="w-4 h-4 text-white"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 011 1v1h2V3a3 3 0 00-3-3H9a3 3 0 00-3 3v1H4a1 1 0 000 2v2a1 1 0 001 1h1v2H4a1 1 0 11 0 2h1v2a1 1 0 001 1h10a1 1 0 001-1v-2h1a1 1 0 110-2h-1v-2h1a1 1 0 001-1V5a1 1 0 000-2h-2V3z" />
+          </svg>
+        )}
+      </button>
+    </div>
+  </div>
+) : (
+  <div className="mb-3 p-3 bg-white/5 rounded-lg">
+    <p className="text-xs text-blue-300 italic">
+      This project is not password protected.
+    </p>
+  </div>
+)}
 
-<button
-  onClick={(e) =>
-    handleCopyPassword(project.password, project.id, e)
-  }
-  className={`ml-2 p-2 rounded-lg transition-all transform ${
-    copiedId === project.id
-      ? "bg-green-500 scale-110"
-      : "bg-blue-600 hover:bg-blue-500"
-  }`}
-  title="Copy password"
->
-
-                        {copiedId === project.id ? (
-                          <FaCheck className="text-white text-sm" />
-                        ) : (
-                          <svg
-                            className="w-4 h-4 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M8 3a1 1 0 011-1h2a1 1 0 011 1v1h2V3a3 3 0 00-3-3H9a3 3 0 00-3 3v1H4a1 1 0 000 2v2a1 1 0 001 1h1v2H4a1 1 0 11 0 2h1v2a1 1 0 001 1h10a1 1 0 001-1v-2h1a1 1 0 110-2h-1v-2h1a1 1 0 001-1V5a1 1 0 000-2h-2V3z" />
-                          </svg>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                )}
 
                 <div className="flex flex-wrap gap-2 mb-3">
                   {project.techStack.map((tech) => (

@@ -48,7 +48,7 @@ const timelineData = [
     side: "right",
     type: "experience",
     date: "Oct 15, 2025 - Present",
-    title: "Web Developer & Team Co-Leader",
+    title: "Web Developer & Team Leader",
     company: "Softvence Agency",
     location: "Dhaka, Bangladesh",
     employmentType: "Full-time",

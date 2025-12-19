@@ -1,6 +1,76 @@
 {
   "shopifyProjects": [
     {
+  "id": 24,
+  "title": "Burlap & Oak",
+  "category": "E-commerce",
+  "description": "Shopify store for Burlap & Oak, showcasing handcrafted furniture with a refined rustic aesthetic, curated collections, and a premium shopping experience.",
+  "techStack": ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
+  "featured": false,
+  "date": "2025",
+  "team": "Solo",
+  "image": "/bur.png",
+  "password": "",
+  "liveLink": "https://burlapandoak.com/",
+  "githubLink": ""
+},
+    {
+  "id": 23,
+  "title": "Cross Woven",
+  "category": "E-commerce",
+  "description": "Shopify store for Cross Woven, featuring faith-inspired apparel, clean modern layouts, curated collections, and a smooth shopping experience.",
+  "techStack": ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
+  "featured": false,
+  "date": "2025",
+  "team": "Solo",
+  "image": "/cross.png",
+  "password": "",
+  "liveLink": "https://crosswoven.shop/",
+  "githubLink": ""
+},
+    {
+  "id": 22,
+  "title": "Pop Chic Activewear",
+  "category": "E-commerce",
+  "description": "Shopify store for Pop Chic Activewear, featuring a clean lifestyle-focused design, category-based shopping, trending products, and a smooth customer experience.",
+  "techStack": ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
+  "featured": false,
+  "date": "2025",
+  "team": "Solo",
+  "image": "/Make.jfif",
+  "password": "taodee",
+  "liveLink": "https://zpe8gw-10.myshopify.com/",
+  "githubLink": ""
+},
+    {
+  "id": 21,
+  "title": "Muffits",
+  "category": "E-commerce",
+  "description": "Shopify store for Muffits, featuring bold branding, vibrant visuals, custom product sections, and an engaging customer-focused shopping experience.",
+  "techStack": ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
+  "featured": false,
+  "date": "2025",
+  "team": "Solo",
+  "image": "/muffits.jfif",
+  "password": "",
+  "liveLink": "https://en84v8v903z8v10n-51445301420.shopifypreview.com/",
+  "githubLink": ""
+},
+    {
+  "id": 20,
+  "title": "Panama Blue",
+  "category": "E-commerce",
+  "description": "Shopify store for Panama Blue, featuring immersive visual storytelling, premium product presentation, and a nature-inspired brand experience.",
+  "techStack": ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
+  "featured": false,
+  "date": "2025",
+  "team": "Solo",
+  "image": "/panama.jfif",
+  "password": "",
+  "liveLink": "https://twvzvf-i0.myshopify.com/",
+  "githubLink": ""
+},
+    {
       "id": 19,
       "title": "Koffee Lane",
       "category": "E-commerce",
@@ -10,7 +80,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/coffee.png",
-      "password": "KFL2025",
+      "password": "rifat",
       "liveLink": "https://coffeelane0.myshopify.com/",
       "githubLink": "#"
     },
@@ -24,7 +94,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/sofi.jpeg",
-      "password": "SS2025",
+      "password": "",
       "liveLink": "https://sofi-swim-2.myshopify.com/",
       "githubLink": ""
     },
@@ -38,7 +108,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/eye.jpeg",
-      "password": "V362025",
+      "password": "",
       "liveLink": "https://vue-362.myshopify.com/",
       "githubLink": ""
     },
@@ -52,7 +122,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/giselle.png",
-      "password": "SG2025",
+      "password": "",
       "liveLink": "https://shopgiselle.com/",
       "githubLink": ""
     },
@@ -66,7 +136,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/strong.png",
-      "password": "SRB2025",
+      "password": "",
       "liveLink": "https://strongrootsbrand.com/",
       "githubLink": ""
     },
@@ -80,7 +150,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/water.png",
-      "password": "WQU2025",
+      "password": "water123",
       "liveLink": "https://waterqualityusa.myshopify.com/",
       "githubLink": ""
     },
@@ -94,7 +164,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/burlap.png",
-      "password": "BO2025",
+      "password": "",
       "liveLink": "https://burlapandoak.com/",
       "githubLink": ""
     },
@@ -108,7 +178,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/kitfix.png",
-      "password": "KF2025",
+      "password": "",
       "liveLink": "https://kitfix.com/",
       "githubLink": ""
     },
@@ -122,7 +192,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/ascend.jpg",
-      "password": "APG2025",
+      "password": "",
       "liveLink": "https://ascendphysiqueofagod.store/",
       "githubLink": ""
     },
@@ -136,7 +206,7 @@
       "date": "2025",
       "team": "Solo",
       "image": "/rumizi.png",
-      "password": "RUM2025",
+      "password": "thewtu",
       "liveLink": "https://rumizii.co.uk/",
       "githubLink": ""
     },
