@@ -4,14 +4,12 @@ import { FaMapMarkerAlt, FaBriefcase, FaGraduationCap, FaGlobe, FaCalendarAlt, F
 const About = () => {
   return (
     <section id='about' className="relative bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white py-20 flex items-center justify-center overflow-hidden">
-      {/* Decorative blurred circles */}
       <div className="absolute top-10 left-1/4 w-72 h-72 bg-blue-900 rounded-full opacity-20 blur-2xl animate-pulse -z-10" />
       <div className="absolute bottom-10 right-1/4 w-56 h-56 bg-purple-900 rounded-full opacity-20 blur-2xl animate-pulse -z-10" />
 
       <div className="container mx-auto px-6 max-w-screen-xl">
-        <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
-          {/* Left Column - Personal Introduction */}
-          <div className="flex-1 space-y-6 bg-white/5 backdrop-blur-lg rounded-2xl shadow-2xl p-8 animate-fadeInUp">
+        <div className="flex flex-col lg:flex-row gap-12 items-stretch justify-center">
+          <div className="flex-1 h-full space-y-6 bg-white/5 backdrop-blur-lg rounded-2xl shadow-2xl p-8 animate-fadeInUp">
             <h2 className="text-4xl md:text-5xl font-extrabold text-center bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 text-transparent bg-clip-text drop-shadow-lg mb-2 animate-gradient">
               About Me
             </h2>
@@ -41,7 +39,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Column - Personal Details & Skills */}
           <div className="flex-1 flex flex-col gap-8">
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 animate-fadeInRight">
               <h3 className="text-xl font-bold text-blue-300 mb-4 text-center">Personal Details</h3>
@@ -77,7 +74,6 @@ const About = () => {
               </ul>
             </div>
 
-            {/* Skills Preview */}
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 animate-fadeInRight">
               <h3 className="text-xl font-bold text-blue-300 mb-4 text-center">Core Competencies</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 w-full">
@@ -97,11 +93,8 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        
       </div>
 
-      {/* Animations */}
       <style>{`
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(40px); }

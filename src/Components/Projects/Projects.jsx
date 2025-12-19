@@ -1,279 +1,12 @@
 import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import vue from "../../../public/eye.jpeg";
-import phase from "../../../public/phase.png";
-import sparex from "../../../public/sparex.png";
-import rumizii from "../../../public/rumizi.png";
-import ascend from "../../../public/ascend.jpg";
-import kitfix from "../../../public/kitfix.png";
-import burlap from "../../../public/burlap.png";
-import waterQuality from "../../../public/water.png";
-import strongRoots from "../../../public/strong.png";
-import shopGiselle from "../../../public/giselle.png";
-import sofiSwim from "../../../public/sofi.jpeg";
-import green from "../../../public/green.png";
-import ihss from "../../../public/ihss.png";
-import portfolio from "../../../public/portfolio.png";
+import { FaSearch, FaCheck } from "react-icons/fa";
+import projectsData from "../../data/projectsData.json";
 
-// Shopify Projects (category stays "E-commerce")
-const shopifyProjects = [
-  {
-    id: 8,
-    title: "ITS Phase",
-    category: "E-commerce",
-    description:
-      "A modern Shopify store for ITS Phase, featuring custom theme development, optimized product pages, and seamless checkout experience.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: phase,
-    liveLink: "https://itsphase.com/",
-    githubLink: "",
-  },
-  {
-    id: 9,
-    title: "Sperax",
-    category: "E-commerce",
-    description:
-      "Shopify-based e-commerce platform for Sperax, focusing on brand-centric design, product catalog, and secure payment integration.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: sparex,
-    liveLink: "https://sperax.com/",
-    githubLink: "",
-  },
-  {
-    id: 10,
-    title: "Rumizii",
-    category: "E-commerce",
-    description:
-      "Developed a Shopify store for Rumizii UK, implementing custom layouts, responsive design, and enhanced user experience for fashion products.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: rumizii,
-    liveLink: "https://rumizii.co.uk/",
-    githubLink: "",
-  },
-  {
-    id: 11,
-    title: "Ascend Physique of a God",
-    category: "E-commerce",
-    description:
-      "Custom Shopify store for Ascend Physique of a God, with tailored product pages, branding, and streamlined checkout process.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: ascend,
-    liveLink: "https://ascendphysiqueofagod.store/",
-    githubLink: "",
-  },
-  {
-    id: 12,
-    title: "Kitfix",
-    category: "E-commerce",
-    description:
-      "Shopify e-commerce solution for Kitfix, featuring dynamic product listings, mobile-friendly design, and integrated payment gateways.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: true,
-    date: "2025",
-    team: "Solo",
-    image: kitfix,
-    liveLink: "https://kitfix.com/",
-    githubLink: "",
-  },
-  {
-    id: 13,
-    title: "Burlap & Oak",
-    category: "E-commerce",
-    description:
-      "Developed Burlap & Oak's Shopify store with a focus on rustic design, easy navigation, and optimized for conversions.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: burlap,
-    liveLink: "https://burlapandoak.com/",
-    githubLink: "",
-  },
-  {
-    id: 14,
-    title: "Water Quality USA",
-    category: "E-commerce",
-    description:
-      "Shopify store for Water Quality USA, providing a clean interface for water testing products and efficient order management.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: waterQuality,
-    liveLink: "https://waterqualityusa.myshopify.com/",
-    githubLink: "",
-  },
-  {
-    id: 15,
-    title: "Strong Roots Brand",
-    category: "E-commerce",
-    description:
-      "Custom Shopify solution for Strong Roots Brand, with branded visuals, product filtering, and smooth shopping experience.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: strongRoots,
-    liveLink: "https://strongrootsbrand.com/",
-    githubLink: "",
-  },
-  {
-    id: 16,
-    title: "Shop Giselle",
-    category: "E-commerce",
-    description:
-      "Shopify store for Shop Giselle, focusing on elegant design, easy product discovery, and secure checkout.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: shopGiselle,
-    liveLink: "https://shopgiselle.com/",
-    githubLink: "",
-  },
-  {
-    id: 17,
-    title: "Vue 362",
-    category: "E-commerce",
-    description:
-      "Developed Vue 362 Shopify store with custom theme enhancements and responsive layouts for a seamless shopping experience.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: vue,
-    liveLink: "https://vue-362.myshopify.com/",
-    githubLink: "",
-  },
-  {
-    id: 18,
-    title: "Sofi Swim",
-    category: "E-commerce",
-    description:
-      "Shopify store for Sofi Swim, featuring vibrant product galleries, mobile optimization, and user-friendly navigation.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "HTML", "CSS"],
-    featured: false,
-    date: "2025",
-    team: "Solo",
-    image: sofiSwim,
-    liveLink: "https://sofi-swim-2.myshopify.com/",
-    githubLink: "",
-  },
+// Merge Shopify projects (desc order) then others
+const projectData = [
+  ...projectsData.shopifyProjects,
+  ...projectsData.otherProjects,
 ];
-
-// Sample Project Data
-const otherProjects = [
-  {
-    id: 1,
-    title: "Green Healthcare",
-    category: "Healthcare",
-    description:
-      "Developed with React and Firebase, featuring user auth, responsive layout, and sections on workshops, fitness, screenings, and health resources.",
-    techStack: ["React", "Firebase"],
-    featured: true,
-    date: "15/12/2024",
-    team: "Solo",
-    image: green,
-    liveLink: "https://health-fairs-664ee.web.app/",
-    githubLink: "",
-  },
-  {
-    id: 2,
-    title: "Integrated Healthcare Support System",
-    category: "Healthcare",
-    description:
-      "The system securely manages user access, doctor appointments, digital medical records, face-verified discounts, and provides admins full control for efficient healthcare management.",
-    techStack: ["React", "Next.js", "Node.js", "MySQL"],
-    featured: true,
-    date: "12/02/2024",
-    team: "Solo",
-    image: ihss,
-    liveLink: "",
-    githubLink:
-      "https://github.com/rifat3790/Integrated-Healthcare-Support-System-IHSS-", // GitHub link available
-  },
-  {
-    id: 3,
-    title: "HR Management System",
-    category: "Web App",
-    description: "Project coming soon..",
-    techStack: ["React", "Next.js", "Node.js", "MySQL"],
-    featured: true,
-    date: "19/09/2025",
-    team: "Solo",
-    image: "/path/to/hr-management-screenshot.jpg",
-    liveLink: "",
-    githubLink: "",
-  },
-  {
-    id: 4,
-    title: "Portfolio Website",
-    category: "Portfolio",
-    description:
-      "A modern, responsive portfolio website with animations and dark mode support.",
-    techStack: ["React", "Tailwind CSS", "DaisyUI"],
-    featured: true,
-    date: "13/08/2025",
-    team: "Solo",
-    image: portfolio,
-    liveLink: "https://portfolio-tyko.vercel.app/",
-    githubLink: "https://github.com/rifat3790/portfolio",
-  },
-  {
-    id: 5,
-    title: "Blog Platform",
-    category: "Web App",
-    description: "Project coming soon..",
-    techStack: ["Next.js", "Prisma", "PostgreSQL", "TinyMCE"],
-    featured: false,
-    date: "15/12/2025",
-    team: "1 person",
-    image: "/path/to/blog-platform-screenshot.jpg",
-    liveLink: "",
-    githubLink: "https://github.com/example",
-  },
-  {
-    id: 6,
-    title: "Chat Application",
-    category: "Dashboard",
-    description: "Project coming soon..",
-    techStack: ["React", "Socket.io", "Node.js", "MongoDB"],
-    featured: false,
-    date: "19/05/2023",
-    team: "Solo",
-    image: "/path/to/chat-application-screenshot.jpg",
-    liveLink: "https://chatapp.example.com",
-    githubLink: "",
-  },
-  {
-    id: 7,
-    title: "Weather Dashboard",
-    category: "Web App",
-    description: "Project coming soon..",
-    techStack: ["React", "OpenWeather API", "Chart.js", "Tailwind CSS"],
-    featured: false,
-    date: "19/09/2025",
-    team: "Solo",
-    image: "/path/to/weather-dashboard-screenshot.jpg",
-    liveLink: "",
-    githubLink: "",
-  },
-];
-
-// Merge Shopify projects first, then others
-const projectData = [...shopifyProjects, ...otherProjects];
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -282,10 +15,12 @@ const Projects = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalProject, setModalProject] = useState(null);
   const [showAll, setShowAll] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
+const [showToast, setShowToast] = useState(false);
+
 
   // Filter projects based on category, technologies, and search term
   const filteredProjects = projectData.filter((project) => {
-    // Show Shopify projects in both "Web App" and "E-commerce" filters
     const matchesCategory =
       activeCategory === "All" ||
       project.category === activeCategory ||
@@ -309,7 +44,8 @@ const Projects = () => {
   };
 
   // Only open modal if BOTH links are empty OR liveLink is empty, otherwise open the link directly
-  const handleButtonClick = (type, project) => {
+  const handleButtonClick = (type, project, e) => {
+    e.stopPropagation();
     if (type === "live") {
       if (!project.liveLink) {
         setModalProject({ ...project, comingSoon: true });
@@ -332,6 +68,21 @@ const Projects = () => {
     }
   };
 
+  // Copy password to clipboard with animation
+  const handleCopyPassword = (password, projectId, e) => {
+  e.stopPropagation();
+  navigator.clipboard.writeText(password);
+
+  setCopiedId(projectId);
+  setShowToast(true);
+
+  setTimeout(() => {
+    setCopiedId(null);
+    setShowToast(false);
+  }, 2000);
+};
+
+
   // Limit initial projects to 8, show all if showAll is true
   const displayedProjects = showAll
     ? filteredProjects
@@ -343,6 +94,19 @@ const Projects = () => {
       className="py-20 bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white min-h-screen"
     >
       <div className="container mx-auto px-4 max-w-7xl">
+
+  {/* Global Copy Toast */}
+  {showToast && (
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] animate-toast">
+      <div className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl shadow-2xl backdrop-blur-md">
+        <FaCheck className="text-sm" />
+        <span className="text-sm font-semibold tracking-wide">
+          Password copied successfully
+        </span>
+      </div>
+    </div>
+  )}
+
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 text-transparent bg-clip-text drop-shadow-lg mb-2 animate-gradient">
@@ -393,7 +157,7 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Technology Filters (Shopify after Node.js) */}
+        {/* Technology Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-6">
           {[
             "React",
@@ -437,7 +201,8 @@ const Projects = () => {
 
         {/* Showing count */}
         <div className="text-center text-blue-300 mb-6 text-sm">
-          Showing {filteredProjects.length} of {projectData.length} projects
+          Showing {displayedProjects.length} of {filteredProjects.length}{" "}
+          projects
         </div>
 
         {/* Projects Grid */}
@@ -445,10 +210,9 @@ const Projects = () => {
           {displayedProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-white/5 backdrop-blur-lg rounded-xl shadow-xl flex flex-col transition-transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer animate-fadeIn"
-              onClick={() => handleProjectClick(project)}
+              className="bg-white/5 backdrop-blur-lg rounded-xl shadow-xl flex flex-col transition-transform hover:-translate-y-2 hover:shadow-2xl animate-fadeIn"
             >
-              {/* Project Image with hover scroll effect */}
+              {/* Project Image */}
               <div className="h-40 md:h-64 lg:h-72 w-full overflow-hidden rounded-t-xl relative group">
                 <div
                   className="absolute inset-0 w-full h-full"
@@ -462,13 +226,11 @@ const Projects = () => {
                       "background-position 8s cubic-bezier(0.4,0,0.2,1)",
                   }}
                 />
-                {/* Scroll effect on hover */}
                 <style>{`
                     .group:hover > div {
                       background-position: bottom !important;
                     }
                   `}</style>
-                {/* Optional: fallback icon if no image */}
                 {!project.image && (
                   <span className="absolute inset-0 flex items-center justify-center text-4xl text-blue-300 font-bold">
                     B
@@ -480,16 +242,66 @@ const Projects = () => {
                   </span>
                 )}
               </div>
+
               <div className="flex-1 flex flex-col justify-between p-6">
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-blue-200 mb-2">
+                  <p className="text-sm text-blue-200 mb-3">
                     {project.description}
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2 mb-2">
+
+                {/* Password Field */}
+                {project.password && (
+                  <div className="mb-3 p-3 bg-white/10 rounded-lg relative">
+
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p className="text-xs text-blue-300 font-semibold mb-1">
+                          Password
+                        </p>
+                        <p className="text-sm font-mono text-white">
+                          {project.password}
+                        </p>
+                      </div>
+                      {/* Copied badge */}
+{/* {copiedId === project.id && (
+  <span className="absolute -top-3 right-3 text-xs bg-green-500 text-white px-2 py-1 rounded-md animate-copied pointer-events-none">
+    Copied!
+  </span>
+)} */}
+
+<button
+  onClick={(e) =>
+    handleCopyPassword(project.password, project.id, e)
+  }
+  className={`ml-2 p-2 rounded-lg transition-all transform ${
+    copiedId === project.id
+      ? "bg-green-500 scale-110"
+      : "bg-blue-600 hover:bg-blue-500"
+  }`}
+  title="Copy password"
+>
+
+                        {copiedId === project.id ? (
+                          <FaCheck className="text-white text-sm" />
+                        ) : (
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M8 3a1 1 0 011-1h2a1 1 0 011 1v1h2V3a3 3 0 00-3-3H9a3 3 0 00-3 3v1H4a1 1 0 000 2v2a1 1 0 001 1h1v2H4a1 1 0 11 0 2h1v2a1 1 0 001 1h10a1 1 0 001-1v-2h1a1 1 0 110-2h-1v-2h1a1 1 0 001-1V5a1 1 0 000-2h-2V3z" />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex flex-wrap gap-2 mb-3">
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
@@ -499,20 +311,22 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-                <div className="flex flex-wrap gap-4 text-xs text-blue-300 mb-2">
+
+                <div className="flex flex-wrap gap-4 text-xs text-blue-300 mb-3">
                   <span>{project.date}</span>
                   <span>{project.team}</span>
                 </div>
-                <div className="flex gap-2 mt-2">
+
+                <div className="flex gap-2 mt-auto">
                   <button
-                    onClick={() => handleButtonClick("live", project)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all"
+                    onClick={(e) => handleButtonClick("live", project, e)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all flex-1"
                   >
                     Live Demo
                   </button>
                   <button
-                    onClick={() => handleButtonClick("code", project)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all"
+                    onClick={(e) => handleButtonClick("code", project, e)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all flex-1"
                   >
                     Code
                   </button>
@@ -523,7 +337,7 @@ const Projects = () => {
         </div>
 
         {/* Show More Button */}
-        {!showAll && filteredProjects.length > 8 && (
+        {!showAll && filteredProjects.length > 6 && (
           <div className="flex justify-center mt-8">
             <button
               className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-all"
@@ -534,15 +348,14 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Modal Component (Project Details) - Adjusted for new layout */}
+        {/* Modal Component */}
         {modalOpen && modalProject && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg shadow-lg max-w-3xl w-full mx-4">
-              {/* Close button */}
-              <div className="flex justify-end p-4">
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
+            <div className="bg-white rounded-lg shadow-lg max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+              <div className="flex justify-end p-4 sticky top-0 bg-white">
                 <button
                   onClick={() => setModalOpen(false)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 transition"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -561,27 +374,28 @@ const Projects = () => {
                 </button>
               </div>
 
-              {/* Modal Content */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                <h3 className="text-2xl font-semibold text-gray-800 mb-4">
                   {modalProject.title}
                 </h3>
                 <div className="mb-4">
                   {modalProject.comingSoon ? (
-                    <p className="text-yellow-500 font-semibold">
+                    <p className="text-yellow-500 font-semibold text-lg">
                       Coming Soon!
                     </p>
                   ) : (
                     <>
-                      <a
-                        href={modalProject.liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline"
-                      >
-                        Live Demo
-                      </a>
-                      {modalProject.githubLink && (
+                      {modalProject.liveLink && (
+                        <a
+                          href={modalProject.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline"
+                        >
+                          Live Demo
+                        </a>
+                      )}
+                      {modalProject.liveLink && modalProject.githubLink && (
                         <span className="mx-2 text-gray-400">|</span>
                       )}
                       {modalProject.githubLink && (
@@ -608,13 +422,23 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-                <div className="text-sm text-gray-500">
-                  <span className="font-semibold text-gray-800">Date:</span>{" "}
-                  {modalProject.date}
-                </div>
-                <div className="text-sm text-gray-500">
-                  <span className="font-semibold text-gray-800">Team:</span>{" "}
-                  {modalProject.team}
+                <div className="text-sm text-gray-600 space-y-2">
+                  <div>
+                    <span className="font-semibold text-gray-800">Date:</span>{" "}
+                    {modalProject.date}
+                  </div>
+                  <div>
+                    <span className="font-semibold text-gray-800">Team:</span>{" "}
+                    {modalProject.team}
+                  </div>
+                  {modalProject.password && (
+                    <div>
+                      <span className="font-semibold text-gray-800">
+                        Password:
+                      </span>{" "}
+                      {modalProject.password}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

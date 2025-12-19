@@ -6,3 +6,27 @@ body {
   font-family: 'Roboto', sans-serif; /* Apply the global sans-serif font */
   font-size: 18px;  /* Base font size */
 }
+
+@keyframes toastSlideDown {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+.animate-toast {
+  animation: toastSlideDown 2s ease-in-out forwards;
+}
+
