@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   FaMapMarkerAlt,
   FaPhone,
@@ -8,8 +8,10 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import { ThemeContext } from "../../context/themeContext";
 
 const GetInTouch = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -69,12 +71,12 @@ const GetInTouch = () => {
         const response = await emailjs.send(
           "service_qd7wyne",
           "template_x9vn5jf",
-          templateParams
+          templateParams,
         );
 
         if (response.status === 200) {
           setFormStatus(
-            "✓ Message sent successfully! I'll get back to you soon."
+            "✓ Message sent successfully! I'll get back to you soon.",
           );
           setFormData({
             firstName: "",
@@ -90,7 +92,7 @@ const GetInTouch = () => {
       } catch (error) {
         console.error("EmailJS error:", error);
         setFormStatus(
-          "⚠ Failed to send. Please email directly: mdrifayethossen@gmail.com"
+          "⚠ Failed to send. Please email directly: mdrifayethossen@gmail.com",
         );
         setTimeout(() => setFormStatus(""), 5000);
       } finally {
@@ -104,7 +106,11 @@ const GetInTouch = () => {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-br from-[#0a192f] to-[#1e293b] text-white min-h-screen"
+      className={`py-20 min-h-screen transition-colors duration-500 ${
+        isDarkMode
+          ? "bg-gradient-to-br from-[#020617] to-[#0f172a] text-white"
+          : "bg-gradient-to-br from-white to-slate-100 text-slate-950"
+      }`}
     >
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Header */}
@@ -121,7 +127,7 @@ const GetInTouch = () => {
         {/* Two-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Contact Info */}
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl shadow-2xl p-8 animate-fadeInUp flex flex-col h-full">
+          <div className="section-card rounded-2xl p-8 animate-fadeInUp flex flex-col h-full">
             <div className="flex-1">
               <h3 className="text-xl font-bold text-white mb-4">
                 Let's work together
@@ -182,7 +188,7 @@ const GetInTouch = () => {
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl shadow-2xl p-8 animate-fadeInUp flex flex-col h-full">
+          <div className="section-card rounded-2xl p-8 animate-fadeInUp flex flex-col h-full">
             <h3 className="text-lg font-bold text-white mb-4">
               Send me a message
             </h3>

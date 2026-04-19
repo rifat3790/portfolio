@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { FaSearch, FaCheck, FaMoon, FaSun } from "react-icons/fa";
 import projectsData from "../../data/projectsData.json";
+import { ThemeContext } from "../../context/themeContext";
 
 const priorityTitles = [
   "AMONE Fragrance",
@@ -30,6 +31,7 @@ const projectData = [
 ];
 
 const Projects = () => {
+  const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeTechnologies, setActiveTechnologies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,18 +40,6 @@ const Projects = () => {
   const [showAll, setShowAll] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
   const [showToast, setShowToast] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("portfolioTheme");
-    setIsDarkMode(savedTheme !== "light");
-  }, []);
-
-  useEffect(() => {
-    document.body.classList.toggle("theme-light", !isDarkMode);
-    document.body.classList.toggle("theme-dark", isDarkMode);
-    localStorage.setItem("portfolioTheme", isDarkMode ? "dark" : "light");
-  }, [isDarkMode]);
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
@@ -153,12 +143,18 @@ const Projects = () => {
         )}
 
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-          <div className="text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 text-transparent bg-clip-text drop-shadow-lg mb-2 animate-gradient">
+        <div className="flex flex-col items-center mb-8 gap-4">
+          <div className="text-center">
+            <h2
+              className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text drop-shadow-lg mb-2 animate-gradient"
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, var(--theme-start), var(--theme-end))",
+              }}
+            >
               Featured Projects
             </h2>
-            <p className={`text-lg ${themeClasses.sectionText}`}>
+            <p className={`text-lg ${themeClasses.sectionText} text-center`}>
               A showcase of recent work with polished UX, clean filtering, and
               password copy support.
             </p>
@@ -269,7 +265,7 @@ const Projects = () => {
           {displayedProjects.map((project) => (
             <div
               key={project.id}
-              className={`${themeClasses.card} backdrop-blur-lg rounded-xl shadow-xl flex flex-col transition-transform hover:-translate-y-2 hover:shadow-2xl animate-fadeIn`}
+              className={`${themeClasses.card} backdrop-blur-lg rounded-xl shadow-xl flex flex-col transition-transform hover:-translate-y-2 hover:shadow-2xl animate-fadeIn animate-premium-glow`}
             >
               {/* Project Image */}
               <div className="h-40 md:h-64 lg:h-72 w-full overflow-hidden rounded-t-xl relative group">
@@ -317,15 +313,19 @@ const Projects = () => {
                 {/* Password Field */}
                 {/* Password / Access Info */}
                 {project.password ? (
-                  <div className="mb-3 p-3 bg-white/10 rounded-lg relative">
+                  <div
+                    className={`mb-3 p-3 rounded-lg ${themeClasses.passwordCard}`}
+                  >
                     <div className="flex justify-between items-center">
                       <div>
-                        <p className="text-xs text-blue-300 font-semibold mb-1">
+                        <p
+                          className={`text-xs font-semibold mb-1 ${themeClasses.cardSubText}`}
+                        >
                           Password
                         </p>
-                        <p className="text-sm font-mono text-white">
-                          {project.password}
-                        </p>
+                        <p
+                          className={`text-sm font-mono ${themeClasses.cardText}`}
+                        ></p>
                       </div>
 
                       <button
@@ -380,13 +380,21 @@ const Projects = () => {
                 <div className="flex gap-2 mt-auto">
                   <button
                     onClick={(e) => handleButtonClick("live", project, e)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all flex-1"
+                    className="px-4 py-2 text-white rounded-lg text-xs font-semibold transition-all flex-1"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(90deg, var(--theme-start), var(--theme-end))",
+                    }}
                   >
                     Live Demo
                   </button>
                   <button
                     onClick={(e) => handleButtonClick("code", project, e)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-xs font-semibold transition-all flex-1"
+                    className="px-4 py-2 text-white rounded-lg text-xs font-semibold transition-all flex-1"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(90deg, var(--theme-start), var(--theme-end))",
+                    }}
                   >
                     Code
                   </button>
@@ -400,7 +408,11 @@ const Projects = () => {
         {!showAll && filteredProjects.length > 6 && (
           <div className="flex justify-center mt-8">
             <button
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-all"
+              className="px-6 py-2 text-white rounded-lg font-semibold transition-all"
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, var(--theme-start), var(--theme-end))",
+              }}
               onClick={() => setShowAll(true)}
             >
               Show More

@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 import { Typewriter } from "react-simple-typewriter";
 import profile from "../../../public/rifat.png";
 import {
@@ -6,44 +7,12 @@ import {
   FaLinkedinIn,
   FaTwitter,
   FaGithub,
-  FaPalette,
-} from "react-icons/fa"; // Added FaPalette
+  FaMoon,
+  FaSun,
+} from "react-icons/fa";
 import "./Banner.css"; // Import the CSS file for styling
 import "../../../public/resume.pdf";
-
-// Color schemes (HSL, 60% lightness)
-const COLOR_SCHEMES = [
-  {
-    name: "Ocean Blue",
-    hsl: "hsl(210, 80%, 60%)",
-    tw: "from-blue-500 to-blue-300",
-  },
-  {
-    name: "Emerald Green",
-    hsl: "hsl(150, 70%, 60%)",
-    tw: "from-green-500 to-green-300",
-  },
-  {
-    name: "Royal Purple",
-    hsl: "hsl(270, 70%, 60%)",
-    tw: "from-purple-500 to-purple-300",
-  },
-  {
-    name: "Sunset Orange",
-    hsl: "hsl(20, 90%, 60%)",
-    tw: "from-orange-500 to-orange-300",
-  },
-  {
-    name: "Rose Pink",
-    hsl: "hsl(340, 70%, 60%)",
-    tw: "from-pink-500 to-pink-300",
-  },
-  {
-    name: "Electric Cyan",
-    hsl: "hsl(190, 100%, 60%)",
-    tw: "from-cyan-500 to-cyan-300",
-  },
-];
+import { ThemeContext, COLOR_SCHEMES } from "../../context/themeContext";
 
 const TITLES = [
   "Full Stack Developer",
@@ -119,40 +88,116 @@ function MatrixRain({ primaryColor }) {
   );
 }
 
-// Theme switcher with no close button
-function ThemeSwitcher({ colorIdx, setColorIdx, showTheme }) {
+function ThreeGShape({ color }) {
+  const canvasRef = useRef();
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true,
+    });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+    renderer.setClearColor(0x000000, 0);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      35,
+      canvas.clientWidth / canvas.clientHeight,
+      0.1,
+      1000,
+    );
+    camera.position.set(0, 0, 4.5);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.9);
+    const directional = new THREE.DirectionalLight(0xffffff, 1.4);
+    directional.position.set(4, 5, 6);
+    scene.add(ambient, directional);
+
+    const material = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(color),
+      emissive: new THREE.Color(color).multiplyScalar(0.25),
+      metalness: 0.8,
+      roughness: 0.15,
+      transparent: true,
+      opacity: 0.92,
+    });
+
+    const torus = new THREE.Mesh(
+      new THREE.TorusGeometry(1.3, 0.16, 32, 140, Math.PI * 1.5),
+      material,
+    );
+    torus.rotation.x = Math.PI / 2.4;
+    torus.rotation.z = Math.PI / 5;
+
+    const bar = new THREE.Mesh(
+      new THREE.BoxGeometry(0.95, 0.14, 0.14),
+      material,
+    );
+    bar.position.set(0.46, 0.35, 0);
+    bar.rotation.z = -Math.PI / 5;
+
+    const group = new THREE.Group();
+    group.add(torus, bar);
+    scene.add(group);
+
+    const resize = () => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      if (width && height) {
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+    };
+
+    let renderId;
+    const animate = () => {
+      group.rotation.y += 0.005;
+      group.rotation.x += 0.0018;
+      group.rotation.z = Math.sin(Date.now() * 0.0008) * 0.07;
+      renderer.render(scene, camera);
+      renderId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("resize", resize);
+    resize();
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(renderId);
+      renderer.dispose();
+      scene.traverse((obj) => {
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          if (Array.isArray(obj.material)) {
+            obj.material.forEach((mat) => mat.dispose());
+          } else {
+            obj.material.dispose();
+          }
+        }
+      });
+    };
+  }, [color]);
+
   return (
-    <div
-      className={`fixed top-1/2 right-6 z-10 flex flex-col gap-2 bg-white/70 dark:bg-black/40 rounded-xl p-3 shadow-lg backdrop-blur-md ${
-        showTheme ? "" : "hidden"
-      }`}
-      style={{ transform: "translateY(-50%)" }} // This will center it vertically
-    >
-      <div className="flex flex-col gap-2">
-        {COLOR_SCHEMES.map((scheme, idx) => (
-          <button
-            key={scheme.name}
-            aria-label={scheme.name}
-            className={`w-7 h-7 rounded-full border-2 ${
-              colorIdx === idx
-                ? "border-gray-900 dark:border-white"
-                : "border-white"
-            } bg-gradient-to-br ${scheme.tw}`}
-            onClick={() => setColorIdx(idx)}
-          />
-        ))}
-      </div>
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-none"
+      aria-hidden="true"
+    />
   );
 }
 
 const Banner = () => {
-  // Theme state
-  const [colorIdx, setColorIdx] = useState(0);
+  const { colorIdx, isDarkMode, setIsDarkMode } = useContext(ThemeContext);
   const primaryColor = COLOR_SCHEMES[colorIdx].hsl;
   const gradientTW = COLOR_SCHEMES[colorIdx].tw;
-
-  const [showTheme, setShowTheme] = useState(false); // Default to hidden
   const [borderAngle, setBorderAngle] = useState(0);
   const [resumeModal, setResumeModal] = useState(false);
   const [shareMsg, setShareMsg] = useState("");
@@ -172,21 +217,21 @@ const Banner = () => {
     {
       name: "Facebook",
       url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        currentUrl
+        currentUrl,
       )}`,
       icon: <FaFacebookF className="text-blue-600" />,
     },
     {
       name: "LinkedIn",
       url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-        currentUrl
+        currentUrl,
       )}`,
       icon: <FaLinkedinIn className="text-blue-600" />,
     },
     {
       name: "Twitter",
       url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-        currentUrl
+        currentUrl,
       )}`,
       icon: <FaTwitter className="text-blue-600" />,
     },
@@ -205,7 +250,6 @@ const Banner = () => {
 
   // Handle scroll event
   const bannerRef = useRef();
-  const [socialPosition, setSocialPosition] = useState("right");
 
   useEffect(() => {
     let raf;
@@ -217,46 +261,37 @@ const Banner = () => {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!bannerRef.current) return;
-      const bannerRect = bannerRef.current.getBoundingClientRect();
-      if (bannerRect.bottom <= 0) {
-        setSocialPosition("left");
-      } else {
-        setSocialPosition("right");
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <section
       id="home"
       ref={bannerRef}
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a192f] to-[#1e293b] dark:from-[#0a192f] dark:to-[#1e293b] overflow-hidden"
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden transition-all duration-700 ${
+        isDarkMode
+          ? "bg-gradient-to-br from-[#020617] to-[#0f172a] text-white"
+          : "bg-gradient-to-br from-white to-slate-100 text-slate-950"
+      }`}
     >
       {/* Matrix Rain Background */}
       <MatrixRain primaryColor={primaryColor} />
+      <ThreeGShape color={COLOR_SCHEMES[colorIdx].start} />
 
       {/* Theme Icon Button */}
       <button
-        className="fixed bottom-6 right-6 z-20 bg-white/80 dark:bg-black/60 rounded-full p-3 shadow-lg backdrop-blur-md hover:scale-110 transition-transform"
-        aria-label="Change Theme"
-        onClick={() => setShowTheme((v) => !v)}
+        className={`fixed bottom-6 right-6 z-20 rounded-full p-3 shadow-lg backdrop-blur-md border transition-colors duration-300 hover:scale-110 ${
+          isDarkMode
+            ? "border-white/20 bg-black/70 text-white"
+            : "border-slate-300 bg-white/90 text-slate-900"
+        }`}
+        aria-label="Toggle theme"
+        onClick={() => setIsDarkMode((prev) => !prev)}
         style={{ transform: "translateY(50%)" }}
       >
-        <FaPalette className="text-2xl text-blue-600 dark:text-blue-300" />
+        {isDarkMode ? (
+          <FaSun className="text-xl theme-accent-text" />
+        ) : (
+          <FaMoon className="text-xl theme-accent-text" />
+        )}
       </button>
-
-      {/* Theme Switcher */}
-      <ThemeSwitcher
-        colorIdx={colorIdx}
-        setColorIdx={setColorIdx}
-        showTheme={showTheme}
-      />
 
       {/* Hero Content */}
       <div className="relative z-10 max-w-6xl w-full mx-auto px-6 py-16 flex flex-col items-center gap-8">
@@ -381,7 +416,7 @@ const Banner = () => {
                       {item.icon}
                       {item.name}
                     </a>
-                  )
+                  ),
                 )}
               </div>
             </div>
@@ -390,7 +425,7 @@ const Banner = () => {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 w-full max-w-2xl">
-          {STATS.map((stat, i) => (
+          {STATS.map((stat) => (
             <div
               key={stat.label}
               className="rounded-xl p-8 bg-white/10 dark:bg-black/30 backdrop-blur-md border-2 border-blue-400 shadow-xl flex flex-col items-center"

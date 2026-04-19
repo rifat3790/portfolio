@@ -3,6 +3,9 @@ export const content = [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
 ];
+export const darkMode = "class";
+import daisyui from "daisyui";
+
 export const theme = {
     extend: {
         fontFamily: {
@@ -16,4 +19,4 @@ export const theme = {
         },
     },
 };
-export const plugins = [];
+export const plugins = [daisyui];
