@@ -54,7 +54,7 @@ const TITLES = [
 
 const STATS = [
   { label: "Years Experience", value: "2+" },
-  { label: "Projects Done", value: "30+" },
+  { label: "Projects Done", value: "100+" },
   { label: "Technologies", value: "31+" },
 ];
 
