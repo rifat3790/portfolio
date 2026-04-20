@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-xl py-2 md:py-4">
       <div
         className={`mx-auto flex w-full max-w-7xl items-center justify-between gap-4 rounded-full border px-4 py-3 shadow-2xl transition-all duration-500 ${
           isDarkMode

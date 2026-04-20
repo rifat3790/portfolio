@@ -25,7 +25,7 @@ const GetInTouch = () => {
 
   // Initialize EmailJS
   useEffect(() => {
-    emailjs.init("c_JLvP-qzJR8YwMC4");
+    emailjs.init("yTsHqIyHJjmEwxbSO");
   }, []);
 
   const handleChange = (e) => {
@@ -60,13 +60,11 @@ const GetInTouch = () => {
 
       try {
         const templateParams = {
-          to_email: "mdrifayethossen@gmail.com",
-          from_name: `${formData.firstName} ${formData.lastName}`,
-          from_email: formData.email,
-          phone_number: formData.phone || "Not provided",
-          message: formData.projectDetails,
-          reply_to: formData.email,
-        };
+  from_name: `${formData.firstName} ${formData.lastName}`,
+  from_email: formData.email,
+  phone_number: formData.phone || "Not provided",
+  message: formData.projectDetails,
+};
 
         const response = await emailjs.send(
           "service_qd7wyne",
