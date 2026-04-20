@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import profile from "../../../public/rifat.png";
 import { ThemeContext } from "../../context/themeContext";
+import '../Banner/Banner.css';
+import './Navbar.css';
 
 const menuItems = [
   { label: "Home", href: "#home" },
@@ -34,11 +36,49 @@ const Navbar = () => {
         }`}
       >
         <div className="flex items-center gap-3">
-          <img
-            className="w-11 h-11 rounded-full border border-white/10"
-            src={profile}
-            alt="Profile"
-          />
+          <div className="relative flex items-center justify-center group hover:scale-110 transition duration-500">
+  
+  {/* Glow Ring */}
+{/* Outer Soft Glow */}
+<div
+  className="absolute rounded-full animate-spin-slow opacity-70 group-hover:opacity-100 transition"
+  style={{
+    width: "58px",
+    height: "58px",
+    background: "conic-gradient(#6366f1, transparent 25%, #22d3ee, transparent 75%, #6366f1)",
+    filter: "blur(6px)",
+  }}
+/>
+
+{/* Inner Neon Ring */}
+<div
+  className="absolute rounded-full animate-spin-reverse opacity-80"
+  style={{
+    width: "48px",
+    height: "48px",
+    background: "conic-gradient(transparent, #22d3ee, #6366f1, transparent)",
+    filter: "blur(1px)",
+  }}
+/>
+
+{/* Pulse Aura */}
+<div
+  className="absolute rounded-full animate-pulse-glow"
+  style={{
+    width: "54px",
+    height: "54px",
+    border: "2px solid rgba(99,102,241,0.5)",
+  }}
+/>
+
+  {/* Profile Image */}
+  <img
+    className="w-11 h-11 rounded-full object-cover relative z-10 border border-white/20 shadow-xl backdrop-blur-md"
+    src={profile}
+    alt="Profile"
+  />
+
+</div>
           <a
             href="#home"
             className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-lg font-semibold transition-colors duration-300 ${
