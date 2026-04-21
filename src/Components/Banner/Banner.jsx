@@ -358,36 +358,40 @@ const Banner = () => {
       </button>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-6xl w-full mx-auto px-6 py-20 flex flex-col items-center gap-8 text-center">
+      <div className="relative z-10 max-w-7xl w-full mx-auto px-6 py-24 md:py-32 flex flex-col items-center gap-12 text-center">
         {/* Profile Image with premium rings */}
-        <div className="relative group">
+        <div className="relative group mb-4">
           <div
-            className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-md opacity-70 group-hover:opacity-100 transition duration-500 animate-spin-slow"
-            style={{ width: "180px", height: "180px", left: "-10px", top: "-10px" }}
+            className="absolute -inset-2 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-xl opacity-60 group-hover:opacity-100 transition duration-500 animate-spin-slow"
+            style={{ width: "200px", height: "200px", left: "-12px", top: "-12px" }}
           />
           <div
             className="absolute rounded-full animate-spin-slow"
             style={{
-              width: "170px",
-              height: "170px",
-              border: `2px solid ${primaryColor}`,
-              top: "-5px",
-              left: "-5px",
+              width: "185px",
+              height: "185px",
+              border: `3px solid ${primaryColor}`,
+              top: "-6px",
+              left: "-6px",
             }}
           />
           <img
             src={profile}
             alt="Profile"
-            className="w-40 h-40 rounded-full object-cover relative z-10 border-4 border-white/20 shadow-2xl transition-transform duration-500 group-hover:scale-105"
+            className="w-44 h-44 rounded-full object-cover relative z-10 border-4 border-white/30 shadow-2xl transition-transform duration-500 group-hover:scale-110"
           />
         </div>
 
-        {/* Greeting */}
-        <div className="space-y-2">
-          <span className={`text-sm font-mono tracking-wider ${isDarkMode ? "text-blue-300" : "text-indigo-600"}`}>
-            &lt; Hello World /&gt;
+        {/* Greeting with better spacing */}
+        <div className="space-y-4">
+          <span className={`inline-block text-xs font-mono tracking-widest uppercase letter-spacing px-4 py-2 rounded-full backdrop-blur-md border ${
+            isDarkMode 
+              ? "bg-blue-500/10 border-blue-500/30 text-blue-300" 
+              : "bg-indigo-500/10 border-indigo-500/30 text-indigo-600"
+          }`}>
+            &lt; Welcome /&gt;
           </span>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight">
             I'm{" "}
             <span className={`bg-gradient-to-r ${gradientTW} bg-clip-text text-transparent`}>
               MD. REFAYET HOSSEN
@@ -395,60 +399,79 @@ const Banner = () => {
           </h1>
         </div>
 
-        {/* Typewriter */}
-        <div className="text-xl md:text-2xl font-semibold text-blue-400 dark:text-blue-300 min-h-[3rem]">
+        {/* Typewriter with better styling */}
+        <div className={`text-2xl md:text-3xl font-semibold min-h-[4rem] flex items-center justify-center ${isDarkMode ? "text-blue-400" : "text-indigo-600"}`}>
           <Typewriter words={TITLES} loop={0} cursor cursorStyle="|" typeSpeed={70} deleteSpeed={50} delaySpeed={1400} />
         </div>
 
-        <p className="text-gray-600 dark:text-gray-300 max-w-xl text-lg">
-          Passionate Full Stack Developer crafting responsive, high-performance web applications with modern technologies.
+        <p className={`text-lg md:text-xl leading-relaxed max-w-2xl font-light ${isDarkMode ? "text-gray-300" : "text-slate-700"}`}>
+          Passionate Full Stack Developer crafting responsive, high-performance web applications with modern technologies and creative solutions.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mt-4">
+        {/* CTA Buttons - Professional Layout */}
+        <div className="flex flex-wrap justify-center gap-4 mt-8">
           <a
             href="#contact"
-            className={`px-6 py-3 rounded-full bg-gradient-to-r ${gradientTW} text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-2`}
+            className={`px-8 py-4 rounded-full bg-gradient-to-r ${gradientTW} text-white font-semibold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 backdrop-blur-sm border border-white/20`}
           >
-            <FaEnvelope /> Get In Touch
+            <FaEnvelope className="text-lg" /> Get In Touch
           </a>
           <a
             href="/resume.pdf"
             download
-            className="px-6 py-3 rounded-full border-2 border-blue-500 text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center gap-2"
+            className={`px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center gap-3 backdrop-blur-md border-2 ${
+              isDarkMode
+                ? "border-blue-500/50 text-blue-300 hover:bg-blue-500/20"
+                : "border-indigo-500/50 text-indigo-600 hover:bg-indigo-500/20"
+            }`}
           >
-            <FaDownload /> Resume
+            <FaDownload className="text-lg" /> Resume
           </a>
           <button
             onClick={() => setResumeModal(true)}
-            className="px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold hover:bg-white/30 transition-all"
+            className={`px-8 py-4 rounded-full font-semibold transition-all duration-300 backdrop-blur-md border ${
+              isDarkMode
+                ? "bg-white/8 border-white/20 text-white hover:bg-white/15"
+                : "bg-white/40 border-slate-300/50 text-slate-800 hover:bg-white/60"
+            }`}
           >
-            Preview
+            Preview Resume
           </button>
           <button
             onClick={() => setShowShare(true)}
-            className="px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold hover:bg-white/30 transition-all flex items-center gap-2"
+            className={`px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center gap-3 backdrop-blur-md border ${
+              isDarkMode
+                ? "bg-white/8 border-white/20 text-white hover:bg-white/15"
+                : "bg-white/40 border-slate-300/50 text-slate-800 hover:bg-white/60"
+            }`}
           >
-            <FaShareAlt /> Share
+            <FaShareAlt className="text-lg" /> Share
           </button>
         </div>
 
-        {/* Stats Cards with Icons and Counters */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 w-full max-w-3xl">
+        {/* Stats Cards - Premium Design */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 w-full max-w-4xl">
           {STATS.map((stat) => (
             <div
               key={stat.label}
-              className={`group rounded-2xl p-6 backdrop-blur-md border transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+              className={`group rounded-2xl p-8 backdrop-blur-xl border transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden relative ${
                 isDarkMode
-                  ? "bg-white/5 border-white/10 hover:border-blue-500/50"
-                  : "bg-white/50 border-slate-200 hover:border-indigo-300"
+                  ? "bg-gradient-to-br from-white/8 to-white/4 border-white/15 hover:border-blue-500/60"
+                  : "bg-gradient-to-br from-white/60 to-white/40 border-slate-200/60 hover:border-indigo-400"
               }`}
             >
-              <div className="text-4xl mb-3">{stat.icon}</div>
-              <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${gradientTW} bg-clip-text text-transparent`}>
-                <AnimatedCounter value={stat.value} suffix={stat.value.includes("+") ? "+" : ""} />
+              <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-10 group-hover:opacity-20 transition-opacity" 
+                style={{background: `linear-gradient(135deg, ${primaryColor}, transparent)`}}
+              />
+              <div className="relative z-10">
+                <div className="text-5xl mb-4 opacity-80">{stat.icon}</div>
+                <div className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${gradientTW} bg-clip-text text-transparent`}>
+                  <AnimatedCounter value={stat.value} suffix={stat.value.includes("+") ? "+" : ""} />
+                </div>
+                <div className={`text-sm font-semibold tracking-wide mt-3 uppercase ${isDarkMode ? "text-gray-400" : "text-slate-600"}`}>
+                  {stat.label}
+                </div>
               </div>
-              <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2">{stat.label}</div>
             </div>
           ))}
         </div>

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Mousewheel, Keyboard } from "swiper/modules";
+import "swiper/css";
 import Loader from './Components/Loadder'
 
 import About from "./Components/About/About";
@@ -66,14 +69,50 @@ function App() {
       ) : (
         <>
           <Navbar />
-          <Banner />
-          <About />
-          <Skills />
-          <Projects />
-          <Blog />
-          <ExperienceEducation />
-          <GetInTouch />
-          <Footer />
+          <Swiper
+            modules={[Mousewheel, Keyboard]}
+            mousewheel={{
+              forceToAxis: true,
+              sensitivity: 1.2,
+            }}
+            keyboard={{
+              enabled: true,
+              onlyInViewport: true,
+            }}
+            direction="vertical"
+            slidesPerView={1}
+            spaceBetween={0}
+            speed={800}
+            observer={true}
+            observeParents={true}
+            className="swiper-container"
+            style={{ height: "100vh" }}
+          >
+            <SwiperSlide style={{ height: "100vh" }}>
+              <Banner />
+            </SwiperSlide>
+            <SwiperSlide style={{ height: "auto", minHeight: "100vh" }}>
+              <About />
+            </SwiperSlide>
+            <SwiperSlide style={{ height: "auto", minHeight: "100vh" }}>
+              <Skills />
+            </SwiperSlide>
+            <SwiperSlide style={{ height: "auto", minHeight: "100vh" }}>
+              <Projects />
+            </SwiperSlide>
+            <SwiperSlide style={{ height: "auto", minHeight: "100vh" }}>
+              <Blog />
+            </SwiperSlide>
+            <SwiperSlide style={{ height: "auto", minHeight: "100vh" }}>
+              <ExperienceEducation />
+            </SwiperSlide>
+            <SwiperSlide style={{ height: "auto", minHeight: "100vh" }}>
+              <GetInTouch />
+            </SwiperSlide>
+            <SwiperSlide style={{ height: "auto", minHeight: "100vh" }}>
+              <Footer />
+            </SwiperSlide>
+          </Swiper>
           <Chatbot />
         </>
       )}
