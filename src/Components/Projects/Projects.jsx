@@ -31,7 +31,7 @@ const projectData = [
   ...projectsData.otherProjects,
 ];
 
-// ========== 3D Background Component (scoped to the section) ==========
+// ========== 3D Background Component ==========
 const ThreeBackground = ({ isDarkMode, primaryColor }) => {
   const containerRef = useRef(null);
 
@@ -39,24 +39,20 @@ const ThreeBackground = ({ isDarkMode, primaryColor }) => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Scene
     const scene = new THREE.Scene();
     scene.background = null;
     scene.fog = new THREE.FogExp2(isDarkMode ? 0x0a0a2a : 0xf0f4fa, 0.006);
 
-    // Camera
     const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
     camera.position.set(0, 1, 10);
     camera.lookAt(0, 0, 0);
 
-    // Renderer with alpha
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // Lights
     const ambient = new THREE.AmbientLight(0x404060, 0.6);
     const dirLight = new THREE.DirectionalLight(0xffffff, 1);
     dirLight.position.set(2, 3, 4);
@@ -66,10 +62,8 @@ const ThreeBackground = ({ isDarkMode, primaryColor }) => {
     fillLight.position.set(1, 2, 3);
     scene.add(ambient, dirLight, backLight, fillLight);
 
-    // Main group
     const group = new THREE.Group();
 
-    // 1. Central Dodecahedron
     const dodeGeo = new THREE.DodecahedronGeometry(1.1);
     const dodeMat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(primaryColor),
@@ -82,7 +76,6 @@ const ThreeBackground = ({ isDarkMode, primaryColor }) => {
     const dode = new THREE.Mesh(dodeGeo, dodeMat);
     group.add(dode);
 
-    // 2. Wireframe sphere
     const sphereWireGeo = new THREE.SphereGeometry(1.7, 24, 18);
     const wireMat = new THREE.MeshBasicMaterial({
       color: new THREE.Color(primaryColor),
@@ -93,7 +86,6 @@ const ThreeBackground = ({ isDarkMode, primaryColor }) => {
     const wireSphere = new THREE.Mesh(sphereWireGeo, wireMat);
     group.add(wireSphere);
 
-    // 3. Orbiting particles
     const particleCount = 1500;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
@@ -116,7 +108,6 @@ const ThreeBackground = ({ isDarkMode, primaryColor }) => {
     const particles = new THREE.Points(particleGeo, particleMat);
     group.add(particles);
 
-    // 4. Rotating ring
     const ringGeo = new THREE.TorusGeometry(1.45, 0.045, 64, 300);
     const ringMat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(primaryColor),
@@ -128,7 +119,6 @@ const ThreeBackground = ({ isDarkMode, primaryColor }) => {
 
     scene.add(group);
 
-    // Mouse interaction
     let mouseX = 0,
       mouseY = 0;
     let targetRotX = 0,
@@ -281,14 +271,10 @@ const Projects = () => {
       id="projects"
       className={`relative py-20 min-h-screen overflow-hidden transition-colors duration-300 ${themeClasses.section}`}
     >
-      {/* 3D Background – only inside this section */}
       <ThreeBackground isDarkMode={isDarkMode} primaryColor={primaryColor} />
-
-      {/* Extra gradient overlay for readability */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-transparent to-black/10 pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-4 max-w-7xl">
-        {/* Toast */}
         {showToast && (
           <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] animate-toast">
             <div className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-xl shadow-2xl backdrop-blur-md">
@@ -298,7 +284,6 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Header */}
         <div className="flex flex-col items-center mb-8 gap-4">
           <div className="text-center">
             <h2
@@ -324,7 +309,6 @@ const Projects = () => {
           </button>
         </div>
 
-        {/* Search */}
         <div className="flex justify-center mb-6">
           <div className="relative w-full max-w-md">
             <input
@@ -338,7 +322,6 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Category filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-4">
           {["All", "Web App", "E-commerce", "Healthcare", "Portfolio", "Dashboard"].map((cat) => (
             <button
@@ -353,7 +336,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Tech filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-6">
           {[
             "React", "Next.js", "Node.js", "Shopify", "MySQL", "Tailwind CSS",
@@ -380,7 +362,6 @@ const Projects = () => {
           Showing {displayedProjects.length} of {filteredProjects.length} projects
         </div>
 
-        {/* Projects grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedProjects.map((project, idx) => (
             <div
@@ -388,12 +369,16 @@ const Projects = () => {
               className={`${themeClasses.card} rounded-xl shadow-xl flex flex-col transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl animate-fadeInUp`}
               style={{ animationDelay: `${idx * 0.05}s` }}
             >
-              {/* Image container with slower scroll animation on hover (6 seconds) */}
+              {/* IMAGE CONTAINER WITH FIXED SCROLL EFFECT */}
               <div className="h-48 md:h-64 w-full overflow-hidden rounded-t-xl relative group">
                 <div
-                  className="absolute inset-0 w-full h-full transition-all duration-[6000ms] ease-out bg-cover bg-no-repeat bg-top group-hover:bg-bottom"
+                  className="absolute inset-0 w-full h-full transition-all duration-[3000ms] ease-out group-hover:bg-bottom"
                   style={{
                     backgroundImage: `url(${project.image || "/placeholder.jpg"})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "top",
+                    backgroundRepeat: "no-repeat",
+                    transitionProperty: "background-position",
                   }}
                 />
                 {project.featured && (
@@ -489,7 +474,6 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Modal */}
         {modalOpen && modalProject && (
           <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/70 backdrop-blur-sm animate-fadeIn">
             <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
@@ -567,6 +551,10 @@ const Projects = () => {
         .animate-gradient {
           background-size: 200% auto;
           animation: gradient 3s linear infinite;
+        }
+        /* Fix for background-position transition on hover */
+        .group:hover .group-hover\\:bg-bottom {
+          background-position: bottom !important;
         }
       `}</style>
     </section>

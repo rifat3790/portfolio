@@ -12,7 +12,7 @@ import {
   FaRocket,
 } from "react-icons/fa";
 
-// Timeline items data (same as original)
+// Timeline items data
 const timelineData = [
   {
     id: 1,
@@ -295,6 +295,26 @@ const ThreeBackground = () => {
 
 // ========== Main Component ==========
 const ExperienceEducation = () => {
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fadeInUp");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "50px" }
+    );
+    cardsRef.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="education"
@@ -331,8 +351,8 @@ const ExperienceEducation = () => {
           {timelineData.map((item, idx) => (
             <div
               key={item.id}
-              className="animate-fadeInUp"
-              style={{ animationDelay: `${idx * 0.1}s`, animationFillMode: "both" }}
+              ref={(el) => (cardsRef.current[idx] = el)}
+              className="opacity-0 transition-all duration-700"
             >
               <div className="group h-full">
                 {/* Premium Card */}

@@ -227,3 +227,37 @@ body.theme-light .theme-card {
   animation: toastSlideDown 2s ease-in-out forwards;
 }
 
+/* AOS-style reveal animations */
+.aos-init {
+  opacity: 0;
+  transform: translateY(32px) scale(0.98);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.aos-animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.aos-fade-up.aos-init {
+  transform: translateY(32px) scale(0.98);
+}
+.aos-fade-right.aos-init {
+  transform: translateX(32px) scale(0.98);
+}
+.aos-fade-left.aos-init {
+  transform: translateX(-32px) scale(0.98);
+}
+.aos-zoom-in.aos-init {
+  transform: scale(0.92);
+}
+.aos-zoom-in.aos-animate {
+  transform: scale(1);
+}
+.aos-slide-up.aos-init {
+  transform: translateY(44px) scale(0.98);
+}
+.aos-slide-up.aos-animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+

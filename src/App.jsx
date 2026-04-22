@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Loader from './Components/Loadder'
+import Loader from "./Components/Loadder";
 
 import About from "./Components/About/About";
 import Banner from "./Components/Banner/Banner";
@@ -13,6 +13,9 @@ import Blog from "./Components/Blog/Blog";
 import Skills from "./Components/Skills/Skills";
 
 import { ThemeContext, COLOR_SCHEMES } from "./context/themeContext";
+import useAosScroll from "./hooks/useAosScroll";
+import Newsletter from "./Components/Newsletter/Newsletter";
+import { CustomCursor } from "./Components/CustomCursor/CustomCursor";
 
 function App() {
   const [colorIdx, setColorIdx] = useState(0);
@@ -20,6 +23,8 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   // Load saved theme
+  useAosScroll();
+
   useEffect(() => {
     const savedColor = localStorage.getItem("portfolioColorIdx");
     const savedDark = localStorage.getItem("portfolioDarkMode");
@@ -75,6 +80,7 @@ function App() {
           <GetInTouch />
           <Footer />
           <Chatbot />
+          <Newsletter />
         </>
       )}
     </ThemeContext.Provider>
